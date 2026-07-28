@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0d0d0d" />
+  <title>第79回高学祭公式ウェブサイト</title>
+  <meta name="description" content="高輪中学校・高等学校で開催される第79回高学祭の公式サイトです。開催日時、企画一覧、アクセスなどをご案内します。" />
+  <link href="./favicon.png" rel="icon" type="image/png" sizes="32x32" />
+
+  <link href="./assets/css/destyle.css" rel="stylesheet" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@600&family=Shippori+Mincho:wght@800&display=swap"
+    rel="stylesheet" />
+  <link href="./assets/css/style.css" rel="stylesheet" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="第79回高学祭" />
+  <meta property="og:title" content="第79回高学祭公式ウェブサイト" />
+  <meta property="og:description" content="高輪中学校・高等学校で開催される第79回高学祭の公式サイトです。開催日時、企画一覧、アクセスなどをご案内します。" />
+  <meta property="og:image" content="./assets/images/ogp.png" />
+  <meta property="og:url" content="" />
+  <meta property="og:locale" content="ja_JP" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="第79回高学祭公式ウェブサイト" />
+  <meta name="twitter:description" content="高輪中学校・高等学校で開催される第79回高学祭の公式サイトです。" />
+  <meta name="twitter:image" content="./assets/images/ogp.png" />
+</head>
+
+<body>
+  <header>
+    <a href="index.html" class="logo">高輪学園 高学祭</a>
+
+    <nav class="desktop-nav" aria-label="メインナビゲーション">
+      <a href="#projects">企画一覧</a>
+      <a href="#access">アクセス</a>
+      <a href="#precautions">注意事項</a>
+    </nav>
+
+    <button class="hamburger-open" id="js-hamburger-open" aria-label="メニューを開く">
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <div class="menu-overlay" id="js-menu-overlay"></div>
+
+  <aside class="mobile-menu" id="js-mobile-menu">
+    <button class="hamburger-close" id="js-hamburger-close" aria-label="メニューを閉じる">
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="mobile-nav">
+      <a href="#projects" class="js-mobile-link">企画一覧</a>
+      <a href="#access" class="js-mobile-link">アクセス</a>
+      <a href="#precautions" class="js-mobile-link">注意事項</a>
+    </nav>
+  </aside>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-sub">第79回</p>
+      <h1 class="hero-main">高学祭</h1>
+      <p class="hero-date">
+        9.26 <small>SAT</small>
+        <span class="sep">/</span>
+        9.27 <small>SUN</small>
+      </p>
+    </div>
+  </section>
+
+  <main id="main">
+    <section class="about">
+      <div class="content-inner about-inner">
+        <div class="about-text">
+          <h2 class="scroll-fade about-title">
+            「<img src="./assets/images/spark-logo.webp" alt="Spark" class="inline-spark-logo" />」とは
+          </h2>
+          <p class="scroll-fade">
+            第79回高学祭のテーマである「Spark」には、高輪生一人ひとりの個性が輝き、爆発するような高学祭になってほしいという思いが込められています。昨年、一昨年と9千人前後のお客様にご来場いただいております。今年こそ大台の来場者数1万人突破を目標にしておりますので、ぜひ足を運んでいただき、高輪生の個性の爆発を体感してください。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="projects">
+      <div class="content-inner">
+        <h2 class="scroll-fade">企画一覧</h2>
+
+        <div class="project-controls scroll-fade">
+          <div class="search-box">
+            <input type="text" id="js-search-input" placeholder="企画名・場所で検索..." aria-label="企画検索" />
+          </div>
+
+          <div class="project-filters" id="js-project-filters">
+            <button class="filter-btn active" data-filter="all">すべて</button>
+            <button class="filter-btn" data-filter="c1">中1</button>
+            <button class="filter-btn" data-filter="c2">中2</button>
+            <button class="filter-btn" data-filter="c3">中3</button>
+            <button class="filter-btn" data-filter="h1">高1</button>
+            <button class="filter-btn" data-filter="h2">高2</button>
+            <button class="filter-btn" data-filter="h3">高3</button>
+            <button class="filter-btn" data-filter="sports">運動部</button>
+            <button class="filter-btn" data-filter="culture">文化部</button>
+            <button class="filter-btn" data-filter="club">同好会</button>
+            <button class="filter-btn" data-filter="committee">サークル（委員会）</button>
+          </div>
+          <button class="filter-more-btn" id="js-more-filter-btn" style="display: none;"></button>
+        </div>
+
+        <p class="project-count scroll-fade" id="js-project-count"></p>
+
+        <div class="project-grid scroll-fade" id="js-project-grid">
+        </div>
+      </div>
+    </section>
+
+    <section id="access" class="access">
+      <div class="content-inner access-inner">
+        <h2 class="scroll-fade">アクセス</h2>
+        <div class="access-content">
+          <iframe class="scroll-fade"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3242.871089290074!2d139.73318937637854!3d35.630985932064115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bb003b57223%3A0xc3c5ef6aa4b1604a!2z6auYvOaXqOS4reWtpuagoS_pq5jnrYnooI3moKE!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade" title="高輪中学校・高等学校のアクセスマップ">
+          </iframe>
+
+          <div class="access-info scroll-fade">
+            <h3>学校法人高輪学園 高輪中学校・高等学校</h3>
+            <p class="address">〒108-0074 東京都港区高輪 2-1-15</p>
+
+            <div class="station-group">
+              <p class="station-title">【最寄り駅】</p>
+              <p>・都営地下鉄浅草線・京浜急行線 「泉岳寺駅」A2出口より徒歩約3分</p>
+              <p>・JR山手線・京浜東北線 「高輪ゲートウェイ駅」より徒歩約6分</p>
+              <p>・東京メトロ南北線・都営地下鉄三田線 「白金高輪駅」1番出口より徒歩約12分</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="precautions" class="precautions">
+      <div class="content-inner precautions-inner">
+        <h2 class="scroll-fade">注意事項</h2>
+        <div class="precautions-content scroll-fade">
+          <div class="precautions-list">
+            <div class="precautions-item">
+              <span class="precautions-num">01</span>
+              <div class="precautions-body">
+                <h3>ご入場について</h3>
+                <p>上履き・スリッパは不要です。土足のままご入場いただけます。</p>
+              </div>
+            </div>
+
+            <div class="precautions-item">
+              <span class="precautions-num">02</span>
+              <div class="precautions-body">
+                <h3>写真・動画撮影について</h3>
+                <p>校内での撮影は可能ですが、他のご来場者様や生徒のプライバシーに配慮いただき、SNS等への無断掲載はお控えください。</p>
+              </div>
+            </div>
+
+            <div class="precautions-item">
+              <span class="precautions-num">03</span>
+              <div class="precautions-body">
+                <h3>校内での喫煙・飲食について</h3>
+                <p>校内は敷地内全面禁煙となっております。また、指定の飲食スペース以外でのご飲食はご遠慮ください。</p>
+              </div>
+            </div>
+
+            <div class="precautions-item">
+              <span class="precautions-num">04</span>
+              <div class="precautions-body">
+                <h3>駐車場・駐輪場について</h3>
+                <p>駐車場および駐輪場のご用意はございません。公共交通機関をご利用のうえご来場ください。</p>
+              </div>
+            </div>
+          </div>
+          <p class="precautions-foot">皆様のご理解とご協力をお願い申し上げます。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-overlay" id="js-modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close" id="js-modal-close" aria-label="閉じる">✕</button>
+      <div id="js-modal-body"></div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo-wrap">
+        <a href="https://takanawa.ed.jp" target="_blank" rel="noopener noreferrer">
+          <img src="./assets/images/logos/takanawa-logo.svg" alt="学校法人高輪学園" class="takanawa-logo" loading="lazy" />
+        </a>
+      </div>
+
+      <div class="footer-sns">
+        <a href="https://www.youtube.com/channel/UCryy53h0aoILSmGqcn73cog" target="_blank" rel="noopener noreferrer"
+          aria-label="公式YouTube">
+          <img src="./assets/images/logos/youtube-logo.svg" alt="YouTube" class="sns-icon" loading="lazy" />
+        </a>
+        <a href="https://www.instagram.com/kougakusai.official/" target="_blank" rel="noopener noreferrer"
+          aria-label="公式Instagram">
+          <img src="./assets/images/logos/instagram-logo.svg" alt="Instagram" class="sns-icon" loading="lazy" />
+        </a>
+        <a href="https://takanawa.ed.jp" target="_blank" rel="noopener noreferrer" aria-label="公式ウェブサイト">
+          <img src="./assets/images/logos/internet-logo.svg" alt="Website" class="sns-icon" loading="lazy" />
+        </a>
+      </div>
+
+      <p class="copyright">© 第79回高学祭執行部 All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <a href="#" id="back-to-top" class="back-to-top" aria-label="ページ上部へ戻る">
+    ↑
+  </a>
+
+  <script src="./assets/js/script.js"></script>
+</body>
+
+</html>
