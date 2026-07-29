@@ -1,959 +1,928 @@
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth
 }
 
 body {
-  font-family: "Noto Sans JP", sans-serif;
+  color: #fff;
+  background-color: #080808;
+  font-family: Noto Sans JP, sans-serif;
   font-weight: 600;
   line-height: 1.7;
-  background-color: #080808;
-  color: #ffffff;
-  overflow-x: hidden;
+  overflow-x: hidden
 }
 
 header {
-  font-family: "Shippori Mincho", serif;
-  font-weight: 800;
-  position: fixed;
-  padding: 18px 40px;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
+  z-index: 100;
+  background: 0 0;
   justify-content: space-between;
   align-items: center;
-  z-index: 100;
-  background: transparent;
-  transition:
-    background-color 0.4s,
-    backdrop-filter 0.4s;
+  width: 100%;
+  padding: 18px 40px;
+  font-family: Shippori Mincho, serif;
+  font-weight: 800;
+  transition: background-color .4s, backdrop-filter .4s;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0
 }
 
 header.scrolled {
-  background-color: rgba(8, 8, 8, 0.6);
-  -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
+  background-color: #08080899
 }
 
 .logo {
-  text-decoration: none;
-  font-size: 1.3rem;
-  font-weight: bold;
-  color: #ffffff;
-  letter-spacing: 0.05em;
-  position: relative;
+  color: #fff;
+  letter-spacing: .05em;
   z-index: 101;
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-decoration: none;
+  position: relative
 }
 
 .desktop-nav {
-  display: flex;
   gap: 35px;
+  display: flex;
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%)
 }
 
 .desktop-nav a {
-  color: #ffffff;
-  text-decoration: none;
+  color: #fff;
+  letter-spacing: .05em;
+  background-image: linear-gradient(#fff, #fff);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  padding-bottom: 4px;
   font-size: 1rem;
   font-weight: 600;
-  letter-spacing: 0.05em;
-  padding-bottom: 4px;
-  background-image: linear-gradient(#ffffff, #ffffff);
-  background-repeat: no-repeat;
-  background-position: left bottom;
-  background-size: 0% 2px;
-  transition: background-size 0.3s ease;
+  text-decoration: none;
+  transition: background-size .3s
 }
 
 .desktop-nav a:hover {
-  background-size: 100% 2px;
+  background-size: 100% 2px
 }
 
 .hamburger-open,
 .menu-overlay,
 .mobile-menu {
-  display: none;
+  display: none
 }
 
 .hero {
-  position: sticky;
-  top: 0;
   z-index: 0;
-  height: 100vh;
-  display: flex;
+  background-image: url(../images/background.webp);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
   justify-content: center;
   align-items: center;
-  background-image: url("../images/background.webp");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  font-family: "Shippori Mincho", serif;
-  overflow: hidden;
+  height: 100vh;
+  font-family: Shippori Mincho, serif;
+  display: flex;
+  position: sticky;
+  top: 0;
+  overflow: hidden
 }
 
-.hero::before {
+.hero:before {
   content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom,
-      rgba(8, 8, 8, 0.35) 0%,
-      rgba(8, 8, 8, 0.7) 70%,
-      #080808 100%);
   z-index: 0;
+  background: linear-gradient(#08080859 0%, #080808b3 70%, #080808 100%);
+  position: absolute;
+  inset: 0
 }
 
 .hero-inner {
-  position: relative;
   z-index: 1;
-  display: flex;
+  text-align: center;
   flex-direction: column;
   align-items: center;
-  text-align: center;
   padding: 0 20px;
+  display: flex;
+  position: relative
 }
 
 .hero-sub {
-  font-family: "Noto Sans JP", sans-serif;
+  letter-spacing: .4em;
+  text-indent: .4em;
+  color: #ffffffe6;
+  margin-bottom: 0;
+  font-family: Noto Sans JP, sans-serif;
   font-size: 1.8rem;
-  font-weight: 700;
-  letter-spacing: 0.4em;
-  text-indent: 0.4em;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 0px;
+  font-weight: 700
 }
 
 .hero-main {
+  letter-spacing: .22em;
+  text-indent: .22em;
+  color: #fff;
+  margin-bottom: 24px;
   font-size: 8.5rem;
   font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: 0.22em;
-  text-indent: 0.22em;
-  color: #ffffff;
-  margin-bottom: 24px;
+  line-height: 1.1
 }
 
 .hero-date {
-  font-family: "Noto Sans JP", sans-serif;
-  font-size: 1.4rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  color: rgba(255, 255, 255, 0.95);
-  display: inline-flex;
+  letter-spacing: .15em;
+  color: #fffffff2;
+  border-top: 1px solid #ffffff59;
   align-items: center;
   gap: 12px;
   padding-top: 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  font-family: Noto Sans JP, sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  display: inline-flex
 }
 
 .hero-date small {
-  font-size: 0.8em;
-  font-weight: 800;
-  opacity: 0.8;
+  opacity: .8;
+  font-size: .8em;
+  font-weight: 800
 }
 
 .hero-date .sep {
-  opacity: 0.35;
-  margin: 0 4px;
+  opacity: .35;
+  margin: 0 4px
 }
 
 main {
-  position: relative;
   z-index: 1;
+  position: relative
 }
 
 section {
-  position: relative;
   isolation: isolate;
   background-color: #080808;
+  position: relative
 }
 
 .content-inner {
-  position: relative;
   z-index: 1;
-  padding: 40px 20px;
   max-width: 1100px;
   margin: 0 auto;
+  padding: 40px 20px;
+  position: relative
 }
 
 .scroll-fade {
   opacity: 0;
-  transform: translateY(20px);
-  transition:
-    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity .8s cubic-bezier(.16, 1, .3, 1), transform .8s cubic-bezier(.16, 1, .3, 1);
+  transform: translateY(20px)
 }
 
 .scroll-fade.is-show {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0)
 }
 
-.about::after {
+.about:after {
   content: "";
-  position: absolute;
-  top: -40px;
-  left: 0;
+  pointer-events: none;
+  background: linear-gradient(#0000, #080808);
   width: 100%;
   height: 40px;
-  background: linear-gradient(to bottom, transparent, #080808);
-  pointer-events: none;
+  position: absolute;
+  top: -40px;
+  left: 0
 }
 
 .about-text {
-  max-width: 860px;
-  margin: 0 auto;
   text-align: center;
+  max-width: 860px;
+  margin: 0 auto
 }
 
 .about-title {
-  display: inline-flex;
-  align-items: center;
+  letter-spacing: .05em;
+  color: #fff;
   justify-content: center;
-  font-size: 2.5rem;
+  align-items: center;
   margin-bottom: 24px;
-  font-family: "Noto Sans JP", sans-serif;
-  letter-spacing: 0.05em;
-  color: #ffffff;
+  font-family: Noto Sans JP, sans-serif;
+  font-size: 2.5rem;
+  display: inline-flex
 }
 
 .inline-spark-logo {
-  height: 5.5rem;
-  width: auto;
   object-fit: contain;
   vertical-align: middle;
+  width: auto;
+  height: 5.5rem
 }
 
 .about p {
-  font-size: 1.15rem;
-  line-height: 2.1;
   color: #f0f0f0;
-  letter-spacing: 0.04em;
+  letter-spacing: .04em;
   text-align: left;
+  font-size: 1.15rem;
+  line-height: 2.1
 }
 
-/* ===================================
-   企画一覧 (Projects)
-   =================================== */
 .projects h2 {
-  font-size: 2.8rem;
-  font-family: "Noto Sans JP", sans-serif;
-  letter-spacing: 0.08em;
-  margin-bottom: 35px;
+  letter-spacing: .08em;
   text-align: center;
-  color: #ffffff;
+  color: #fff;
+  margin-bottom: 35px;
+  font-family: Noto Sans JP, sans-serif;
+  font-size: 2.8rem
 }
 
-.projects h2::after {
+.projects h2:after {
   content: "";
-  display: block;
+  background: #fff;
   width: 50px;
   height: 2px;
-  background: #ffffff;
   margin: 18px auto 0;
+  display: block
 }
 
 .project-controls {
-  display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
   margin-bottom: 24px;
+  display: flex
 }
 
-/* 検索窓 */
 .search-box {
   width: 100%;
-  max-width: 400px;
+  max-width: 400px
 }
 
 .search-box input {
+  color: #fff;
+  background: #ffffff0f;
+  border: 1px solid #fff3;
+  border-radius: 30px;
+  outline: none;
   width: 100%;
   padding: 12px 20px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 30px;
-  color: #ffffff;
-  font-size: 0.95rem;
   font-family: inherit;
-  outline: none;
-  transition: all 0.3s ease;
+  font-size: .95rem;
+  transition: all .3s
 }
 
 .search-box input::placeholder {
-  color: rgba(255, 255, 255, 0.4);
+  color: #fff6
 }
 
 .search-box input:focus {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.6);
+  background: #ffffff1f;
+  border-color: #fff9
 }
 
-/* カテゴリボタン */
 .project-filters {
-  display: flex;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
+  display: flex
 }
 
 .filter-btn {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #cccccc;
-  padding: 8px 18px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
+  color: #ccc;
   cursor: pointer;
-  transition: all 0.3s ease;
+  background: #ffffff14;
+  border: 1px solid #fff3;
+  border-radius: 20px;
+  padding: 8px 18px;
+  font-size: .85rem;
+  font-weight: 600;
+  transition: all .3s
 }
 
 .filter-btn:hover,
 .filter-btn.active {
-  background: #ffffff;
   color: #080808;
-  border-color: #ffffff;
+  background: #fff;
+  border-color: #fff
 }
 
-/* 【重要】非表示用クラス */
 .project-filters .filter-btn.is-hidden {
-  display: none !important;
+  display: none !important
 }
 
-/* 「他〇件 / 閉じる」ボタンのスタイル */
 .filter-more-btn {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  color: #ffffff;
-  padding: 8px 18px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
+  color: #fff;
   cursor: pointer;
-  transition: all 0.3s ease;
+  background: #ffffff14;
+  border: 1px solid #fff6;
+  border-radius: 20px;
+  padding: 8px 18px;
+  font-size: .85rem;
+  font-weight: 600;
+  transition: all .3s
 }
 
 .filter-more-btn:hover {
-  background: #ffffff;
   color: #080808;
-  border-color: #ffffff;
+  background: #fff;
+  border-color: #fff
 }
 
 .project-count {
   text-align: center;
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: #ffffff80;
   margin-bottom: 30px;
+  font-size: .85rem
 }
 
-/* グリッドレイアウト */
 .project-grid {
-  display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 20px;
+  display: grid
 }
 
-/* カードデザイン */
 .project-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 12px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
   cursor: pointer;
-  transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+  background: #ffffff08;
+  border: 1px solid #ffffff1f;
+  border-radius: 12px;
+  flex-direction: column;
+  transition: transform .3s, border-color .3s, background-color .3s;
+  display: flex;
+  overflow: hidden
 }
 
 .project-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(255, 255, 255, 0.35);
-  background: rgba(255, 255, 255, 0.06);
+  background: #ffffff0f;
+  border-color: #ffffff59;
+  transform: translateY(-4px)
 }
 
 .project-img-wrap {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.4);
-  position: relative;
-  display: flex;
-  align-items: center;
+  aspect-ratio: 1;
+  background-color: #0006;
   justify-content: center;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  position: relative;
+  overflow: hidden
 }
 
 .project-img-wrap img {
+  object-fit: contain;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  transition: transform 0.3s ease;
+  transition: transform .3s
 }
 
 .project-card:hover .project-img-wrap img {
-  transform: scale(1.03);
+  transform: scale(1.03)
 }
 
-/* カード本文 */
 .project-body {
-  padding: 16px;
-  display: flex;
   flex-direction: column;
   flex-grow: 1;
+  padding: 16px;
+  display: flex
 }
 
 .project-location {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.7);
-  background: rgba(255, 255, 255, 0.08);
-  padding: 3px 8px;
+  color: #ffffffb3;
+  background: #ffffff14;
   border-radius: 4px;
-  display: inline-block;
-  margin-bottom: 8px;
   width: fit-content;
+  margin-bottom: 8px;
+  padding: 3px 8px;
+  font-size: .8rem;
+  display: inline-block
 }
 
 .project-title {
+  color: #fff;
+  margin-bottom: 4px;
   font-size: 1.05rem;
   font-weight: 700;
-  color: #ffffff;
-  line-height: 1.4;
-  margin-bottom: 4px;
+  line-height: 1.4
 }
 
 .no-projects {
-  grid-column: 1 / -1;
   text-align: center;
-  padding: 40px 0;
-  color: rgba(255, 255, 255, 0.5);
+  color: #ffffff80;
+  grid-column: 1/-1;
+  padding: 40px 0
 }
 
-/* ===================================
-   企画詳細モーダル (Popup Modal)
-   =================================== */
 .modal-overlay {
-  position: fixed;
-  inset: 0;
   z-index: 2000;
-  background-color: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  background-color: #000000bf;
   justify-content: center;
   align-items: center;
   padding: 20px;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity .3s, visibility .3s;
+  display: flex;
+  position: fixed;
+  inset: 0
 }
 
 .modal-overlay.is-active {
   opacity: 1;
-  visibility: visible;
+  visibility: visible
 }
 
 .modal-content {
   background: #141414;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid #fff3;
   border-radius: 16px;
   width: 100%;
   max-width: 520px;
   max-height: 85vh;
-  overflow-y: auto;
-  position: relative;
   padding: 30px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-  transform: translateY(20px) scale(0.95);
-  transition: transform 0.3s ease;
+  transition: transform .3s;
+  position: relative;
+  overflow-y: auto;
+  transform: translateY(20px)scale(.95);
+  box-shadow: 0 20px 40px #0009
 }
 
 .modal-overlay.is-active .modal-content {
-  transform: translateY(0) scale(1);
+  transform: translateY(0)scale(1)
 }
 
 .modal-close {
-  position: absolute;
-  top: 16px;
-  right: 16px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 10;
+  background: #ffffff1a;
+  border: 1px solid #fff3;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
   width: 36px;
   height: 36px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #ffffff;
   font-size: 1.1rem;
-  cursor: pointer;
+  transition: all .2s;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-  z-index: 10;
+  position: absolute;
+  top: 16px;
+  right: 16px
 }
 
 .modal-close:hover {
-  background: #ffffff;
   color: #080808;
+  background: #fff
 }
 
 .modal-img-wrap {
-  width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1;
+  background-color: #0006;
   border-radius: 10px;
-  overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
   margin-bottom: 20px;
+  overflow: hidden
 }
 
 .modal-img-wrap img {
-  width: 100%;
-  height: 100%;
   object-fit: contain;
+  width: 100%;
+  height: 100%
 }
 
 .modal-location {
-  display: inline-block;
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.8);
-  background: rgba(255, 255, 255, 0.1);
-  padding: 4px 10px;
+  color: #fffc;
+  background: #ffffff1a;
   border-radius: 4px;
   margin-bottom: 10px;
+  padding: 4px 10px;
+  font-size: .85rem;
+  display: inline-block
 }
 
 .modal-title {
+  color: #fff;
+  margin-bottom: 14px;
   font-size: 1.6rem;
   font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 14px;
-  line-height: 1.3;
+  line-height: 1.3
 }
 
 .modal-desc {
+  color: #ccc;
   font-size: 1rem;
-  color: #cccccc;
-  line-height: 1.8;
   font-weight: 500;
+  line-height: 1.8
 }
 
-/* ===================================
-   アクセス & 注意事項
-   =================================== */
 .access h2,
 .precautions h2 {
-  font-size: 2.8rem;
-  font-family: "Noto Sans JP", sans-serif;
-  letter-spacing: 0.08em;
-  margin-bottom: 50px;
+  letter-spacing: .08em;
   text-align: center;
-  color: #ffffff;
+  color: #fff;
+  margin-bottom: 50px;
+  font-family: Noto Sans JP, sans-serif;
+  font-size: 2.8rem
 }
 
-.access h2::after,
-.precautions h2::after {
+.access h2:after,
+.precautions h2:after {
   content: "";
-  display: block;
+  background: #fff;
   width: 50px;
   height: 2px;
-  background: #ffffff;
   margin: 18px auto 0;
+  display: block
 }
 
 .access-content {
-  display: flex;
   flex-direction: column;
   gap: 30px;
+  display: flex
 }
 
 .access iframe {
-  width: 100%;
-  height: 380px;
   border-radius: 12px;
+  width: 100%;
+  height: 380px
 }
 
 .access-info {
-  text-align: left;
+  text-align: left
 }
 
 .access-info h3 {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #ffffff;
+  color: #fff;
   margin-bottom: 14px;
+  font-size: 1.6rem;
+  font-weight: 700
 }
 
 .access-info .address {
-  font-size: 1.25rem;
-  color: #ffffff;
+  color: #fff;
+  border-bottom: 1px solid #ffffff40;
   margin-bottom: 28px;
   padding-bottom: 18px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  font-size: 1.25rem
 }
 
 .station-title {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #ffffff;
+  color: #fff;
   margin-bottom: 14px;
+  font-size: 1.3rem;
+  font-weight: 700
 }
 
 .station-group p {
-  font-size: 1.15rem;
-  color: #ffffff;
+  color: #fff;
   margin-bottom: 12px;
-  line-height: 1.75;
+  font-size: 1.15rem;
+  line-height: 1.75
 }
 
 .precautions-content {
   max-width: 860px;
-  margin: 0 auto;
+  margin: 0 auto
 }
 
 .precautions-list {
-  display: flex;
   flex-direction: column;
   gap: 0;
+  display: flex
 }
 
 .precautions-item {
-  display: grid;
+  text-align: left;
+  border-bottom: 1px solid #ffffff1f;
   grid-template-columns: 80px 1fr;
   align-items: start;
   padding: 32px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  text-align: left;
+  display: grid
 }
 
 .precautions-item:first-child {
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid #ffffff1f
 }
 
 .precautions-num {
-  font-family: "Shippori Mincho", serif;
+  color: #fff6;
+  letter-spacing: .05em;
+  font-family: Shippori Mincho, serif;
   font-size: 1.6rem;
   font-weight: 800;
-  color: rgba(255, 255, 255, 0.4);
-  letter-spacing: 0.05em;
-  line-height: 1.2;
+  line-height: 1.2
 }
 
 .precautions-body h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #ffffff;
+  color: #fff;
+  letter-spacing: .03em;
   margin-bottom: 8px;
-  letter-spacing: 0.03em;
+  font-size: 1.25rem;
+  font-weight: 700
 }
 
 .precautions-body p {
+  color: #ccc;
   font-size: 1.05rem;
-  line-height: 1.8;
-  color: #cccccc;
   font-weight: 500;
+  line-height: 1.8
 }
 
 .precautions-foot {
-  margin-top: 40px;
   text-align: center;
-  font-size: 1.1rem;
-  letter-spacing: 0.05em;
-  color: #cccccc;
+  letter-spacing: .05em;
+  color: #ccc;
+  margin-top: 40px;
+  font-size: 1.1rem
 }
 
 footer {
-  position: relative;
   z-index: 1;
-  background-color: #000000;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 50px 20px 40px;
   text-align: center;
+  background-color: #000;
+  border-top: 1px solid #ffffff1f;
+  padding: 50px 20px 40px;
+  position: relative
 }
 
 .footer-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
   flex-direction: column;
   align-items: center;
   gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex
 }
 
 .footer-logo-wrap {
-  display: flex;
   justify-content: center;
   align-items: center;
+  display: flex
 }
 
 .takanawa-logo {
-  height: 46px;
-  width: auto;
   object-fit: contain;
-  filter: brightness(0) invert(1) opacity(0.85);
-  transition: opacity 0.3s ease;
+  filter: brightness(0)invert()opacity(.85);
+  width: auto;
+  height: 46px;
+  transition: opacity .3s
 }
 
 .takanawa-logo:hover {
-  opacity: 1;
+  opacity: 1
 }
 
 .footer-sns {
-  display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   gap: 28px;
+  display: flex
 }
 
 .sns-icon {
+  object-fit: contain;
+  filter: brightness(0)invert()opacity(.7);
   width: 24px;
   height: 24px;
-  object-fit: contain;
-  filter: brightness(0) invert(1) opacity(0.7);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity .3s, transform .3s
 }
 
 .sns-icon:hover {
   opacity: 1;
-  transform: translateY(-2px);
+  transform: translateY(-2px)
 }
 
 .copyright {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.4);
-  letter-spacing: 0.05em;
+  color: #fff6;
+  letter-spacing: .05em;
+  font-size: .85rem
 }
 
 .back-to-top {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  width: 44px;
-  height: 44px;
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #ffffff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  font-size: 1.1rem;
+  color: #fff;
   z-index: 90;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
+  background-color: #ffffff1a;
+  border: 1px solid #fff3;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: all .3s;
+  display: flex;
+  position: fixed;
+  bottom: 24px;
+  right: 24px
 }
 
 .back-to-top.is-show {
   opacity: 1;
-  visibility: visible;
+  visibility: visible
 }
 
 .back-to-top:hover {
-  background-color: #ffffff;
   color: #080808;
+  background-color: #fff
 }
 
-/* ===================================
-   レスポンシブ対応 (PC・タブレット・スマホ)
-   =================================== */
-
-/* --- パソコン向け --- */
-@media screen and (min-width: 901px) {
+@media screen and (min-width:901px) {
   .access-content {
-    display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: stretch;
     gap: 40px;
+    display: grid
   }
 
   .access iframe {
     height: 100%;
-    min-height: 380px;
+    min-height: 380px
   }
 }
 
-/* --- スマホ・タブレット向け --- */
-@media screen and (max-width: 900px) {
+@media screen and (max-width:900px) {
   header {
-    padding: 16px 20px;
+    padding: 16px 20px
   }
 
   .desktop-nav {
-    display: none;
+    display: none
   }
 
   .hamburger-open {
-    display: flex;
+    cursor: pointer;
+    z-index: 101;
+    background: 0 0;
+    border: none;
     flex-direction: column;
     justify-content: center;
     gap: 6px;
     width: 40px;
     height: 40px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    z-index: 101;
+    display: flex
   }
 
   .hamburger-open span {
-    display: block;
+    background-color: #fff;
     width: 24px;
     height: 2px;
-    background-color: #ffffff;
     margin: 0 auto;
-    transition: transform 0.3s ease;
+    transition: transform .3s;
+    display: block
   }
 
   .menu-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(4px);
     z-index: 1000;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    background: #0009;
+    transition: opacity .3s, visibility .3s;
+    position: fixed;
+    inset: 0
   }
 
   .menu-overlay.is-active {
-    display: block;
     opacity: 1;
     visibility: visible;
+    display: block
   }
 
   .mobile-menu {
-    display: flex;
+    z-index: 1001;
+    background-color: #0d0d0d;
+    border-left: 1px solid #ffffff26;
     flex-direction: column;
+    width: 280px;
+    height: 100vh;
+    padding: 80px 30px 40px;
+    transition: transform .3s cubic-bezier(.16, 1, .3, 1);
+    display: flex;
     position: fixed;
     top: 0;
     right: 0;
-    width: 280px;
-    height: 100vh;
-    background-color: #0d0d0d;
-    border-left: 1px solid rgba(255, 255, 255, 0.15);
-    z-index: 1001;
-    padding: 80px 30px 40px;
-    transform: translateX(100%);
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translate(100%)
   }
 
   .mobile-menu.is-active {
-    transform: translateX(0);
+    transform: translate(0)
   }
 
   .hamburger-close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
+    cursor: pointer;
+    background: 0 0;
+    border: none;
+    justify-content: center;
+    align-items: center;
     width: 40px;
     height: 40px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    position: absolute;
+    top: 20px;
+    right: 20px
   }
 
   .hamburger-close span {
-    position: absolute;
+    background-color: #fff;
     width: 24px;
     height: 2px;
-    background-color: #ffffff;
+    position: absolute
   }
 
-  .hamburger-close span:nth-child(1) {
-    transform: rotate(45deg);
+  .hamburger-close span:first-child {
+    transform: rotate(45deg)
   }
 
   .hamburger-close span:nth-child(2) {
-    transform: rotate(-45deg);
+    transform: rotate(-45deg)
   }
 
   .mobile-nav {
-    display: flex;
     flex-direction: column;
     gap: 24px;
+    display: flex
   }
 
   .mobile-nav a {
-    color: #ffffff;
-    text-decoration: none;
+    color: #fff;
+    letter-spacing: .05em;
+    border-bottom: 1px solid #ffffff1a;
+    padding-bottom: 12px;
     font-size: 1.2rem;
     font-weight: 600;
-    letter-spacing: 0.05em;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: 12px;
+    text-decoration: none
   }
 
   .hero-main {
-    font-size: 4.8rem;
-    letter-spacing: 0.15em;
-    text-indent: 0.15em;
+    letter-spacing: .15em;
+    text-indent: .15em;
     margin-bottom: 20px;
+    font-size: 4.8rem
   }
 
   .hero-date {
-    font-size: 1.1rem;
-    padding-top: 18px;
     gap: 8px;
+    padding-top: 18px;
+    font-size: 1.1rem
   }
 
   .content-inner {
-    padding: 60px 20px;
+    padding: 60px 20px
   }
 
   .about-title {
-    font-size: 2.2rem;
+    font-size: 2.2rem
   }
 
   .inline-spark-logo {
-    height: 4rem;
+    height: 4rem
   }
 
   .about p {
-    font-size: 1.05rem;
+    font-size: 1.05rem
   }
 
   .access h2,
   .precautions h2 {
-    font-size: 2.5rem;
+    font-size: 2.5rem
   }
 
   .access iframe {
-    height: 280px;
+    height: 280px
   }
 
   .access-info h3 {
-    font-size: 1.5rem;
+    font-size: 1.5rem
   }
 
   .access-info .address {
-    font-size: 1.15rem;
+    font-size: 1.15rem
   }
 
   .station-title {
-    font-size: 1.2rem;
+    font-size: 1.2rem
   }
 
   .station-group p {
-    font-size: 1.05rem;
+    font-size: 1.05rem
   }
 
   .precautions-item {
     grid-template-columns: 50px 1fr;
-    padding: 24px 0;
+    padding: 24px 0
   }
 
   .precautions-num {
-    font-size: 1.3rem;
+    font-size: 1.3rem
   }
 
   .precautions-body h3 {
-    font-size: 1.15rem;
+    font-size: 1.15rem
   }
 
   .precautions-body p {
-    font-size: 0.95rem;
+    font-size: .95rem
   }
 }

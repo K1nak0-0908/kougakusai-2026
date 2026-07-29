@@ -1,199 +1,210 @@
 const projectsData = [
+    // cultural
     {
         id: 1,
-        title: "dummy",
-        location: "dummy",
-        category: "dummy",
-        image: "./assets/images/projects/2026-07-25 17.26.32 - 北島聡一郎（Kuri）.png"
+        title: "ダーツ部",
+        location: "出展場所",
+        category: "culture",
+        image: "./assets/images/projects/cultural/cultural-01.webp"
     },
     {
         id: 2,
-        title: "dummy",
-        location: "dummy",
-        category: "dummy",
-        image: "./assets/images/projects/56DE1A6E-0BEC-4B07-9861-6E59819DC945 - 瀧澤正樹.png"
+        title: "天文部",
+        location: "出展場所",
+        category: "culture",
+        image: "./assets/images/projects/cultural/cultural-02.webp"
     },
     {
         id: 3,
-        title: "dummy",
-        location: "dummy",
-        category: "dummy",
-        image: "./assets/images/projects/IMG_0510 - Junichi Yokoo.jpeg"
+        title: "将棋部",
+        location: "出展場所",
+        category: "culture",
+        image: "./assets/images/projects/cultural/cultural-03.webp"
     },
     {
         id: 4,
-        title: "dummy",
-        location: "dummy",
-        category: "dummy",
-        image: "./assets/images/projects/IMG_3806 - Yuto Watanabe.jpeg"
+        title: "弦楽部",
+        location: "出展場所",
+        category: "culture",
+        image: "./assets/images/projects/cultural/cultural-04.webp"
     },
     {
         id: 5,
-        title: "dummy",
-        location: "dummy",
-        category: "dummy",
-        image: "./assets/images/projects/IMG_5314 - さくらもち.jpeg"
+        title: "映画研究部",
+        location: "出展場所",
+        category: "culture",
+        image: "./assets/images/projects/cultural/cultural-05.webp"
     },
     {
         id: 6,
-        title: "dummy",
-        location: "dummy",
-        category: "dummy",
-        image: "./assets/images/projects/IMG_6706 - 矢澤祥真.jpeg"
+        title: "書道部",
+        location: "出展場所",
+        category: "culture",
+        image: "./assets/images/projects/cultural/cultural-06.webp"
     },
     {
         id: 7,
-        title: "dummy",
-        location: "dummy",
-        category: "dummy",
-        image: "./assets/images/projects/WIN_20260718_10_10_31_Pro - 土岐一瑳.jpg"
+        title: "理科研究部",
+        location: "出展場所",
+        category: "culture",
+        image: "./assets/images/projects/cultural/cultural-07.webp"
     },
     {
         id: 8,
-        title: "ゴルフ部",
-        location: "dummy",
-        category: "sports",
-        image: "./assets/images/projects/ゴルフ部.png"
+        title: "社会歴史研究部",
+        location: "出展場所",
+        category: "culture",
+        image: "./assets/images/projects/cultural/cultural-08.webp"
     },
     {
         id: 9,
-        title: "じぶんの町を良くするしくみ",
-        location: "dummy",
-        category: "committee",
-        image: "./assets/images/projects/じぶんの町を良くするしくみ.jpg"
+        title: "美術部",
+        location: "出展場所",
+        category: "culture",
+        image: "./assets/images/projects/cultural/cultural-09.webp"
     },
+
+    // sports
     {
         id: 10,
-        title: "ダーツ部",
-        location: "dummy",
+        title: "ゴルフ部",
+        location: "出展場所",
         category: "sports",
-        image: "./assets/images/projects/ダーツ部.jpeg"
+        image: "./assets/images/projects/sports/sports-01.webp"
     },
     {
         id: 11,
-        title: "ディップスじゃなくてディッピンドッツね",
-        location: "dummy",
-        category: "c3",
-        image: "./assets/images/projects/ディップスじゃなくてディッピンドッツね.png"
+        title: "バレーボール部",
+        location: "出展場所",
+        category: "sports",
+        image: "./assets/images/projects/sports/sports-02.webp"
     },
+
+    // club
     {
         id: 12,
-        title: "バレーボール部",
-        location: "dummy",
-        category: "sports",
-        image: "./assets/images/projects/バレーボール部.jpeg"
+        title: "マケドニア同好会",
+        location: "出展場所",
+        category: "club",
+        image: "./assets/images/projects/club/club-01.webp"
     },
     {
         id: 13,
-        title: "マケドニア同好会",
-        location: "dummy",
+        title: "数学同好会",
+        location: "出展場所",
         category: "club",
-        image: "./assets/images/projects/マケドニア同好会.JPG"
+        image: "./assets/images/projects/club/club-02.webp"
     },
+
+    // committee
     {
         id: 14,
-        title: "中三三線",
-        location: "dummy",
-        category: "c3",
-        image: "./assets/images/projects/中三三線.jpg"
+        title: "じぶんの町を良くするしくみ",
+        location: "出展場所",
+        category: "committee",
+        image: "./assets/images/projects/じぶんの町を良くするしくみ.webp"
     },
     {
         id: 15,
-        title: "中三劇",
-        location: "dummy",
-        category: "c3",
-        image: "./assets/images/projects/中三劇.png"
+        title: "父母の会バザー",
+        location: "出展場所",
+        category: "committee",
+        image: "./assets/images/projects/父母の会バザー.webp"
     },
     {
         id: 16,
-        title: "天文部",
-        location: "dummy",
-        category: "culture",
-        image: "./assets/images/projects/天文部.png"
+        title: "高学祭パンフレット・ロゴ商品販売",
+        location: "出展場所",
+        category: "committee",
+        image: "./assets/images/projects/高学祭ﾊﾟﾝﾌﾚｯﾄ_ﾛｺﾞ商品販売.webp"
     },
+
+    // --- 学年展示 (category: "c3", "h1", "h3") ---
     {
         id: 17,
-        title: "将棋部",
-        location: "dummy",
-        category: "culture",
-        image: "./assets/images/projects/将棋部.png"
+        title: "中三三線",
+        location: "出展場所",
+        category: "c3",
+        image: "./assets/images/projects/中三三線.webp"
     },
     {
         id: 18,
-        title: "弦楽部",
-        location: "dummy",
-        category: "culture",
-        image: "./assets/images/projects/弦楽部.png"
+        title: "中三劇",
+        location: "出展場所",
+        category: "c3",
+        image: "./assets/images/projects/中三劇.webp"
     },
     {
         id: 19,
-        title: "数学同好会",
-        location: "dummy",
-        category: "club",
-        image: "./assets/images/projects/数学同好会.png"
+        title: "高一学年展示",
+        location: "出展場所",
+        category: "h1",
+        image: "./assets/images/projects/高一.webp"
     },
     {
         id: 20,
-        title: "映画研究部",
-        location: "dummy",
-        category: "culture",
-        image: "./assets/images/projects/映画研究部.jpg"
+        title: "高三校外飲食",
+        location: "出展場所",
+        category: "h3",
+        image: "./assets/images/projects/高三校外飲食.webp"
     },
+
+    // dummy
     {
         id: 21,
-        title: "書道部",
-        location: "dummy",
-        category: "culture",
-        image: "./assets/images/projects/書道部.jpg"
+        title: "dummy",
+        location: "出展場所",
+        category: "dummy",
+        image: "./assets/images/projects/project-01.webp"
     },
     {
         id: 22,
-        title: "父母の会バザー",
-        location: "dummy",
-        category: "committee",
-        image: "./assets/images/projects/父母の会バザー.png"
+        title: "dummy",
+        location: "出展場所",
+        category: "dummy",
+        image: "./assets/images/projects/project-02.webp"
     },
     {
         id: 23,
-        title: "理科研究部",
-        location: "dummy",
-        category: "culture",
-        image: "./assets/images/projects/理科研究部.png"
+        title: "dummy",
+        location: "出展場所",
+        category: "dummy",
+        image: "./assets/images/projects/project-03.webp"
     },
     {
         id: 24,
-        title: "社会歴史研究部",
-        location: "dummy",
-        category: "culture",
-        image: "./assets/images/projects/社会歴史研究部.png"
+        title: "dummy",
+        location: "出展場所",
+        category: "dummy",
+        image: "./assets/images/projects/project-04.webp"
     },
     {
         id: 25,
-        title: "美術部",
-        location: "dummy",
-        category: "culture",
-        image: "./assets/images/projects/美術部.png"
+        title: "dummy",
+        location: "出展場所",
+        category: "dummy",
+        image: "./assets/images/projects/project-05.webp"
     },
     {
         id: 26,
-        title: "高一学年展示",
-        location: "dummy",
-        category: "h1",
-        image: "./assets/images/projects/高一.jpg"
+        title: "dummy",
+        location: "出展場所",
+        category: "dummy",
+        image: "./assets/images/projects/project-06.webp"
     },
     {
         id: 27,
-        title: "高三校外飲食",
-        location: "dummy",
-        category: "h3",
-        image: "./assets/images/projects/高三校外飲食.png"
+        title: "dummy",
+        location: "出展場所",
+        category: "dummy",
+        image: "./assets/images/projects/project-07.webp"
     },
     {
         id: 28,
-        title: "高学祭パンフレット・ロゴ商品販売",
-        location: "dummy",
-        category: "committee",
-        image: "./assets/images/projects/高学祭ﾊﾟﾝﾌﾚｯﾄ_ﾛｺﾞ商品販売.png"
+        title: "dummy",
+        location: "出展場所",
+        category: "dummy",
+        image: "./assets/images/projects/ディップスじゃなくてディッピンドッツね.webp"
     }
 ];
 
@@ -220,11 +231,11 @@ function renderProjects() {
     });
 
     if (countEl) {
-        countEl.textContent = `該当する企画: ${filtered.length}件`;
+        countEl.textContent = `該当する出展: ${filtered.length}件`;
     }
 
     if (filtered.length === 0) {
-        container.innerHTML = `<p class="no-projects">該当する企画が見つかりませんでした。</p>`;
+        container.innerHTML = `<p class="no-projects">該当する出展が見つかりませんでした。</p>`;
         removeToggleButton();
         return;
     }
@@ -240,7 +251,7 @@ function renderProjects() {
           src="${item.image}" 
           alt="${item.title}" 
           loading="lazy"
-          onerror="this.src='./assets/images/no-image.jpg'" 
+          onerror="this.src='./assets/images/no-image.webp'" 
         />
       </div>
       <div class="project-body">
@@ -326,7 +337,7 @@ function openProjectModal(id) {
 
     modalBody.innerHTML = `
     <div class="modal-img-wrap">
-      <img src="${item.image}" alt="${item.title}" onerror="this.src='./assets/images/no-image.jpg'" />
+      <img src="${item.image}" alt="${item.title}" onerror="this.src='./assets/images/no-image.webp'" />
     </div>
     <span class="modal-location">${item.location}</span>
     <h3 class="modal-title">${item.title}</h3>
