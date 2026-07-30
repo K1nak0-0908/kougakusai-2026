@@ -3,11 +3,11 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#0d0d0d" />
   <title>第79回高学祭公式ウェブサイト</title>
   <meta name="description" content="高輪中学校・高等学校で開催される第79回高学祭の公式サイトです。開催日時、出展一覧、アクセスなどをご案内します。" />
-  <link href="./favicon.png" rel="icon" type="image/png" sizes="32x32" />
+  <link rel="icon" href="./favicon.png" type="image/png">
 
   <link href="./assets/css/destyle.css" rel="stylesheet" />
 
@@ -19,23 +19,26 @@
     rel="stylesheet" />
   <link href="./assets/css/style.css" rel="stylesheet" />
 
+  <link rel="canonical" href="https://kougakusai.pages.dev/" />
+
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="第79回高学祭" />
   <meta property="og:title" content="第79回高学祭公式ウェブサイト" />
   <meta property="og:description" content="高輪中学校・高等学校で開催される第79回高学祭の公式サイトです。開催日時、出展一覧、アクセスなどをご案内します。" />
   <meta property="og:image" content="https://kougakusai.pages.dev/assets/images/ogp.png" />
-  <meta property="og:url" content="" />
+  <meta property="og:url" content="https://kougakusai.pages.dev/" />
   <meta property="og:locale" content="ja_JP" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="第79回高学祭公式ウェブサイト" />
   <meta name="twitter:description" content="高輪中学校・高等学校で開催される第79回高学祭の公式サイトです。" />
+  <meta name="twitter:url" content="https://kougakusai.pages.dev/" />
   <meta name="twitter:image" content="https://kougakusai.pages.dev/assets/images/ogp.png" />
 </head>
 
 <body>
   <header>
-    <a href="index.html" class="logo">高輪学園 高学祭</a>
+    <a href="./" class="logo">高輪学園 高学祭</a>
 
     <nav class="desktop-nav" aria-label="メインナビゲーション">
       <a href="#projects">出展一覧</a>
@@ -43,7 +46,7 @@
       <a href="#precautions">注意事項</a>
     </nav>
 
-    <button class="hamburger-open" id="js-hamburger-open" aria-label="メニューを開く">
+    <button type="button" class="hamburger-open" id="js-hamburger-open" aria-label="メニューを開く">
       <span></span>
       <span></span>
     </button>
@@ -52,7 +55,7 @@
   <div class="menu-overlay" id="js-menu-overlay"></div>
 
   <aside class="mobile-menu" id="js-mobile-menu">
-    <button class="hamburger-close" id="js-hamburger-close" aria-label="メニューを閉じる">
+    <button type="button" class="hamburger-close" id="js-hamburger-close" aria-label="メニューを閉じる">
       <span></span>
       <span></span>
     </button>
@@ -76,7 +79,7 @@
     </div>
   </section>
 
-  <main id="main">
+  <main>
     <section class="about">
       <div class="content-inner about-inner">
         <div class="about-text">
@@ -100,19 +103,19 @@
           </div>
 
           <div class="project-filters" id="js-project-filters">
-            <button class="filter-btn active" data-filter="all">すべて</button>
-            <button class="filter-btn" data-filter="c1">中1</button>
-            <button class="filter-btn" data-filter="c2">中2</button>
-            <button class="filter-btn" data-filter="c3">中3</button>
-            <button class="filter-btn" data-filter="h1">高1</button>
-            <button class="filter-btn" data-filter="h2">高2</button>
-            <button class="filter-btn" data-filter="h3">高3</button>
-            <button class="filter-btn" data-filter="sports">運動部</button>
-            <button class="filter-btn" data-filter="culture">文化部</button>
-            <button class="filter-btn" data-filter="club">同好会</button>
-            <button class="filter-btn" data-filter="committee">サークル（委員会）</button>
+            <button type="button" class="filter-btn active" data-filter="all">すべて</button>
+            <button type="button" class="filter-btn" data-filter="c1">中1</button>
+            <button type="button" class="filter-btn" data-filter="c2">中2</button>
+            <button type="button" class="filter-btn" data-filter="c3">中3</button>
+            <button type="button" class="filter-btn" data-filter="h1">高1</button>
+            <button type="button" class="filter-btn" data-filter="h2">高2</button>
+            <button type="button" class="filter-btn" data-filter="h3">高3</button>
+            <button type="button" class="filter-btn" data-filter="sports">運動部</button>
+            <button type="button" class="filter-btn" data-filter="culture">文化部</button>
+            <button type="button" class="filter-btn" data-filter="club">同好会</button>
+            <button type="button" class="filter-btn" data-filter="committee">サークル（委員会）</button>
           </div>
-          <button class="filter-more-btn" id="js-more-filter-btn" style="display: none;"></button>
+          <button type="button" class="filter-more-btn" id="js-more-filter-btn" style="display: none;"></button>
         </div>
 
         <p class="project-count scroll-fade" id="js-project-count"></p>
@@ -126,9 +129,8 @@
       <div class="content-inner access-inner">
         <h2 class="scroll-fade">アクセス</h2>
         <div class="access-content">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4998.962812153306!2d139.73348667578583!3d35.63831407260124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bab6a7340eb%3A0x20cb2bba3286a801!2z6auY6Lyq5Lit5a2m5qCh44O76auY562J5a2m5qCh!5e1!3m2!1sja!2sjp!4v1785318661961!5m2!1sja!2sjp"
-            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+          <iframe src="https://maps.google.com/maps?q=高輪中学校・高等学校&t=&z=15&ie=UTF8&iwloc=&output=embed" width="600"
+            height="450" style="border:0;" allowfullscreen loading="lazy"
             referrerpolicy="strict-origin-when-cross-origin"></iframe>
 
           <div class="access-info scroll-fade">
@@ -199,7 +201,7 @@
 
   <div class="modal-overlay" id="js-modal-overlay">
     <div class="modal-content">
-      <button class="modal-close" id="js-modal-close" aria-label="閉じる">✕</button>
+      <button type="button" class="modal-close" id="js-modal-close" aria-label="閉じる">✕</button>
       <div id="js-modal-body"></div>
     </div>
   </div>
