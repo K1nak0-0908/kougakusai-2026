@@ -46,7 +46,8 @@
       <a href="#precautions">注意事項</a>
     </nav>
 
-    <button type="button" class="hamburger-open" id="js-hamburger-open" aria-label="メニューを開く">
+    <button type="button" class="hamburger-open" id="js-hamburger-open" aria-label="メニューを開く"
+      aria-controls="js-mobile-menu" aria-expanded="false">
       <span></span>
       <span></span>
     </button>
@@ -54,7 +55,7 @@
 
   <div class="menu-overlay" id="js-menu-overlay"></div>
 
-  <aside class="mobile-menu" id="js-mobile-menu">
+  <aside class="mobile-menu" id="js-mobile-menu" aria-label="モバイルメニュー" aria-hidden="true">
     <button type="button" class="hamburger-close" id="js-hamburger-close" aria-label="メニューを閉じる">
       <span></span>
       <span></span>
@@ -116,12 +117,28 @@
             <button type="button" class="filter-btn" data-filter="club">同好会</button>
             <button type="button" class="filter-btn" data-filter="committee">サークル（委員会）</button>
           </div>
-          <button type="button" class="filter-more-btn" id="js-more-filter-btn" style="display: none;"></button>
         </div>
 
         <p class="project-count scroll-fade" id="js-project-count"></p>
 
         <div class="project-grid scroll-fade" id="js-project-grid">
+          <noscript>
+            <style>
+              .scroll-fade {
+                opacity: 1;
+                transform: none;
+              }
+
+              #js-project-grid > noscript {
+                display: contents;
+              }
+            </style>
+            <div class="noscript-notice" role="status">
+              <p class="noscript-notice-title">出展一覧を表示できません</p>
+              <p>このページの出展一覧はJavaScriptを使用して表示しています。<br />
+                ブラウザでJavaScriptを有効にしてから、もう一度読み込んでください。</p>
+            </div>
+          </noscript>
         </div>
       </div>
     </section>
@@ -130,9 +147,38 @@
       <div class="content-inner access-inner">
         <h2 class="scroll-fade">アクセス</h2>
         <div class="access-content">
-          <iframe src="https://maps.google.com/maps?q=高輪中学校・高等学校&t=&z=15&ie=UTF8&iwloc=&output=embed" width="600"
-            height="450" style="border:0;" allowfullscreen loading="lazy"
-            referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          <div class="map-container">
+            <iframe title="高輪中学校・高等学校への地図" src="https://maps.google.com/maps?q=高輪中学校・高等学校&t=&z=15&ie=UTF8&iwloc=&output=embed" width="600"
+              height="450" style="border:0;" allowfullscreen loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            <noscript>
+              <style>
+                .map-container iframe {
+                  display: none;
+                }
+
+                .map-noscript-notice {
+                  min-height: 380px;
+                  margin-top: 0;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                }
+
+                @media screen and (max-width: 900px) {
+                  .map-noscript-notice {
+                    min-height: 280px;
+                  }
+                }
+              </style>
+              <div class="noscript-notice map-noscript-notice" role="status">
+                <p class="noscript-notice-title">地図を表示できません</p>
+                <p>〒108-0074 東京都港区高輪 2-1-15</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=高輪中学校・高等学校" target="_blank"
+                  rel="noopener noreferrer">Google マップで会場を開く</a>
+              </div>
+            </noscript>
+          </div>
 
           <div class="access-info scroll-fade">
             <h3>会場：高輪中学校・高等学校</h3>
@@ -200,8 +246,8 @@
     </section>
   </main>
 
-  <div class="modal-overlay" id="js-modal-overlay">
-    <div class="modal-content">
+  <div class="modal-overlay" id="js-modal-overlay" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="js-modal-title" tabindex="-1">
       <button type="button" class="modal-close" id="js-modal-close" aria-label="閉じる">✕</button>
       <div id="js-modal-body"></div>
     </div>

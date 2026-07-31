@@ -202,8 +202,15 @@ const INITIAL_SHOW_COUNT = 8;
 let currentCategory = "all";
 let currentSearchQuery = "";
 let isExpanded = false;
+let lastFocusedElement = null;
 
 let els = {};
+
+function getScrollBehavior() {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth";
+}
 
 function renderProjects() {
     if (!els.grid) return;
@@ -242,6 +249,9 @@ function renderProjects() {
         const article = document.createElement("article");
         article.className = "project-card";
         article.dataset.id = item.id;
+        article.tabIndex = 0;
+        article.setAttribute("role", "button");
+        article.setAttribute("aria-label", `${item.title}の詳細を表示`);
 
         const imgWrap = document.createElement("div");
         imgWrap.className = "project-img-wrap";
@@ -250,10 +260,7 @@ function renderProjects() {
         img.src = item.image;
         img.alt = item.title;
         img.loading = "lazy";
-        img.onerror = () => {
-            img.onerror = null;
-            img.src = "./assets/images/no-image.webp";
-        };
+        img.onerror = () => showImageUnavailable(imgWrap, img);
 
         imgWrap.appendChild(img);
 
@@ -308,7 +315,7 @@ function renderToggleButton(remainingCount) {
         if (!isExpanded) {
             const projectsSection = document.getElementById("projects");
             if (projectsSection) {
-                projectsSection.scrollIntoView({ behavior: "smooth" });
+                projectsSection.scrollIntoView({ behavior: getScrollBehavior() });
             }
         }
     });
@@ -323,6 +330,18 @@ function removeToggleButton() {
     }
 }
 
+function showImageUnavailable(container, img) {
+    img.remove();
+    container.classList.add("image-unavailable");
+    container.setAttribute("aria-label", "画像準備中");
+}
+
+function updateScrollLock() {
+    const isModalOpen = els.modalOverlay?.classList.contains("is-active");
+    const isMenuOpen = els.mobileMenu?.classList.contains("is-active");
+    document.body.style.overflow = isModalOpen || isMenuOpen ? "hidden" : "";
+}
+
 function openProjectModal(id) {
     const item = projectsData.find((p) => p.id === id);
     if (!item || !els.modalOverlay || !els.modalBody) return;
@@ -335,10 +354,7 @@ function openProjectModal(id) {
     const img = document.createElement("img");
     img.src = item.image;
     img.alt = item.title;
-    img.onerror = () => {
-        img.onerror = null;
-        img.src = "./assets/images/no-image.webp";
-    };
+    img.onerror = () => showImageUnavailable(wrap, img);
 
     wrap.appendChild(img);
 
@@ -348,18 +364,25 @@ function openProjectModal(id) {
 
     const title = document.createElement("h3");
     title.className = "modal-title";
+    title.id = "js-modal-title";
     title.textContent = item.title;
 
     els.modalBody.append(wrap, location, title);
 
+    lastFocusedElement = document.activeElement;
     els.modalOverlay.classList.add("is-active");
-    document.body.style.overflow = "hidden";
+    els.modalOverlay.setAttribute("aria-hidden", "false");
+    updateScrollLock();
+    els.modalCloseBtn?.focus();
 }
 
 function closeProjectModal() {
     if (!els.modalOverlay) return;
     els.modalOverlay.classList.remove("is-active");
-    document.body.style.overflow = "";
+    els.modalOverlay.setAttribute("aria-hidden", "true");
+    updateScrollLock();
+    if (lastFocusedElement instanceof HTMLElement) lastFocusedElement.focus();
+    lastFocusedElement = null;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -376,6 +399,7 @@ document.addEventListener("DOMContentLoaded", () => {
         closeBtn: document.getElementById("js-hamburger-close"),
         mobileMenu: document.getElementById("js-mobile-menu"),
         menuOverlay: document.getElementById("js-menu-overlay"),
+        modalContent: document.querySelector(".modal-content"),
     };
 
     let ticking = false;
@@ -399,7 +423,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (els.backToTop) {
         els.backToTop.addEventListener("click", (e) => {
             e.preventDefault();
-            window.scrollTo({ top: 0, behavior: "smooth" });
+            window.scrollTo({ top: 0, behavior: getScrollBehavior() });
         });
     }
 
@@ -420,13 +444,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const openMenu = () => {
         if (els.mobileMenu) els.mobileMenu.classList.add("is-active");
         if (els.menuOverlay) els.menuOverlay.classList.add("is-active");
-        document.body.style.overflow = "hidden";
+        els.mobileMenu?.setAttribute("aria-hidden", "false");
+        els.openBtn?.setAttribute("aria-expanded", "true");
+        updateScrollLock();
+        els.closeBtn?.focus();
     };
 
     const closeMenu = () => {
         if (els.mobileMenu) els.mobileMenu.classList.remove("is-active");
         if (els.menuOverlay) els.menuOverlay.classList.remove("is-active");
-        document.body.style.overflow = "";
+        els.mobileMenu?.setAttribute("aria-hidden", "true");
+        els.openBtn?.setAttribute("aria-expanded", "false");
+        updateScrollLock();
+        els.openBtn?.focus();
     };
 
     if (els.openBtn && els.closeBtn && els.mobileMenu) {
@@ -449,13 +479,44 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") closeProjectModal();
+        if (e.key === "Escape") {
+            if (els.modalOverlay?.classList.contains("is-active")) {
+                closeProjectModal();
+            } else if (els.mobileMenu?.classList.contains("is-active")) {
+                closeMenu();
+            }
+        }
+
+        if (e.key === "Tab" && els.modalOverlay?.classList.contains("is-active")) {
+            const focusable = els.modalContent?.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            );
+            if (!focusable?.length) return;
+
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        }
     });
 
     if (els.grid) {
         els.grid.addEventListener("click", (e) => {
             const card = e.target.closest(".project-card");
             if (!card) return;
+            openProjectModal(Number(card.dataset.id));
+        });
+
+        els.grid.addEventListener("keydown", (e) => {
+            if (e.key !== "Enter" && e.key !== " ") return;
+            const card = e.target.closest(".project-card");
+            if (!card) return;
+            e.preventDefault();
             openProjectModal(Number(card.dataset.id));
         });
     }
