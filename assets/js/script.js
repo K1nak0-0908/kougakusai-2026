@@ -342,6 +342,23 @@ function updateScrollLock() {
     document.body.style.overflow = isModalOpen || isMenuOpen ? "hidden" : "";
 }
 
+function trapFocus(event, container) {
+    const focusable = container?.querySelectorAll(
+        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+    if (!focusable?.length) return;
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+    }
+}
+
 function openProjectModal(id) {
     const item = projectsData.find((p) => p.id === id);
     if (!item || !els.modalOverlay || !els.modalBody) return;
@@ -435,23 +452,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const scrollTargets = document.querySelectorAll(".scroll-fade");
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("is-show");
-                    observer.unobserve(entry.target);
-                }
-            });
-        },
-        { rootMargin: "0px 0px -10% 0px" }
-    );
-    scrollTargets.forEach((target) => observer.observe(target));
+    if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-show");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { rootMargin: "0px 0px -10% 0px" }
+        );
+        scrollTargets.forEach((target) => observer.observe(target));
+    } else {
+        scrollTargets.forEach((target) => target.classList.add("is-show"));
+    }
 
     const openMenu = () => {
         if (els.mobileMenu) els.mobileMenu.classList.add("is-active");
         if (els.menuOverlay) els.menuOverlay.classList.add("is-active");
         els.mobileMenu?.setAttribute("aria-hidden", "false");
+        els.mobileMenu?.removeAttribute("inert");
         els.openBtn?.setAttribute("aria-expanded", "true");
         updateScrollLock();
         els.closeBtn?.focus();
@@ -461,6 +483,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (els.mobileMenu) els.mobileMenu.classList.remove("is-active");
         if (els.menuOverlay) els.menuOverlay.classList.remove("is-active");
         els.mobileMenu?.setAttribute("aria-hidden", "true");
+        els.mobileMenu?.setAttribute("inert", "");
         els.openBtn?.setAttribute("aria-expanded", "false");
         updateScrollLock();
         els.openBtn?.focus();
@@ -494,20 +517,11 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        if (e.key === "Tab" && els.modalOverlay?.classList.contains("is-active")) {
-            const focusable = els.modalContent?.querySelectorAll(
-                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-            );
-            if (!focusable?.length) return;
-
-            const first = focusable[0];
-            const last = focusable[focusable.length - 1];
-            if (e.shiftKey && document.activeElement === first) {
-                e.preventDefault();
-                last.focus();
-            } else if (!e.shiftKey && document.activeElement === last) {
-                e.preventDefault();
-                first.focus();
+        if (e.key === "Tab") {
+            if (els.modalOverlay?.classList.contains("is-active")) {
+                trapFocus(e, els.modalContent);
+            } else if (els.mobileMenu?.classList.contains("is-active")) {
+                trapFocus(e, els.mobileMenu);
             }
         }
     });
@@ -534,7 +548,9 @@ document.addEventListener("DOMContentLoaded", () => {
     categoryBtns.forEach((btn) => {
         btn.addEventListener("click", () => {
             categoryBtns.forEach((b) => b.classList.remove("active"));
+            categoryBtns.forEach((b) => b.setAttribute("aria-pressed", "false"));
             btn.classList.add("active");
+            btn.setAttribute("aria-pressed", "true");
             currentCategory = btn.dataset.filter;
             isExpanded = false;
             renderProjects();

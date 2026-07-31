@@ -65,7 +65,7 @@
 
   <div class="menu-overlay" id="js-menu-overlay"></div>
 
-  <aside class="mobile-menu" id="js-mobile-menu" aria-label="モバイルメニュー" aria-hidden="true">
+  <aside class="mobile-menu" id="js-mobile-menu" aria-label="モバイルメニュー" aria-hidden="true" inert>
     <button type="button" class="hamburger-close" id="js-hamburger-close" aria-label="メニューを閉じる">
       <span></span>
       <span></span>
@@ -115,21 +115,21 @@
           </div>
 
           <div class="project-filters" id="js-project-filters">
-            <button type="button" class="filter-btn active" data-filter="all">すべて</button>
-            <button type="button" class="filter-btn" data-filter="c1">中1</button>
-            <button type="button" class="filter-btn" data-filter="c2">中2</button>
-            <button type="button" class="filter-btn" data-filter="c3">中3</button>
-            <button type="button" class="filter-btn" data-filter="h1">高1</button>
-            <button type="button" class="filter-btn" data-filter="h2">高2</button>
-            <button type="button" class="filter-btn" data-filter="h3">高3</button>
-            <button type="button" class="filter-btn" data-filter="sports">運動部</button>
-            <button type="button" class="filter-btn" data-filter="culture">文化部</button>
-            <button type="button" class="filter-btn" data-filter="club">同好会</button>
-            <button type="button" class="filter-btn" data-filter="committee">サークル（委員会）</button>
+            <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">すべて</button>
+            <button type="button" class="filter-btn" data-filter="c1" aria-pressed="false">中1</button>
+            <button type="button" class="filter-btn" data-filter="c2" aria-pressed="false">中2</button>
+            <button type="button" class="filter-btn" data-filter="c3" aria-pressed="false">中3</button>
+            <button type="button" class="filter-btn" data-filter="h1" aria-pressed="false">高1</button>
+            <button type="button" class="filter-btn" data-filter="h2" aria-pressed="false">高2</button>
+            <button type="button" class="filter-btn" data-filter="h3" aria-pressed="false">高3</button>
+            <button type="button" class="filter-btn" data-filter="sports" aria-pressed="false">運動部</button>
+            <button type="button" class="filter-btn" data-filter="culture" aria-pressed="false">文化部</button>
+            <button type="button" class="filter-btn" data-filter="club" aria-pressed="false">同好会</button>
+            <button type="button" class="filter-btn" data-filter="committee" aria-pressed="false">サークル（委員会）</button>
           </div>
         </div>
 
-        <p class="project-count scroll-fade" id="js-project-count"></p>
+        <p class="project-count scroll-fade" id="js-project-count" aria-live="polite"></p>
 
         <div class="project-grid scroll-fade" id="js-project-grid">
           <noscript>

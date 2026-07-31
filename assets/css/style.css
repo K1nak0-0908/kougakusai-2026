@@ -84,6 +84,7 @@ header.scrolled {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  height: 100svh;
   font-family: Shippori Mincho, serif;
   display: flex;
   position: sticky;
@@ -875,6 +876,7 @@ footer {
     flex-direction: column;
     width: 280px;
     height: 100vh;
+    height: 100svh;
     padding: 80px 30px 40px;
     transition: transform .3s cubic-bezier(.16, 1, .3, 1);
     display: flex;
