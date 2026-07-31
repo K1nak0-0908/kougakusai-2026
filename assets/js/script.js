@@ -402,6 +402,14 @@ document.addEventListener("DOMContentLoaded", () => {
         modalContent: document.querySelector(".modal-content"),
     };
 
+    const updateScrollUi = () => {
+        const scrollY = window.scrollY;
+        if (els.header) els.header.classList.toggle("scrolled", scrollY > 50);
+        if (els.backToTop) {
+            els.backToTop.classList.toggle("is-show", scrollY > 200);
+        }
+    };
+
     let ticking = false;
     window.addEventListener(
         "scroll",
@@ -410,15 +418,14 @@ document.addEventListener("DOMContentLoaded", () => {
             ticking = true;
 
             requestAnimationFrame(() => {
-                const scrollY = window.scrollY;
-                if (els.header) els.header.classList.toggle("scrolled", scrollY > 50);
-                if (els.backToTop)
-                    els.backToTop.classList.toggle("is-show", scrollY > 200);
+                updateScrollUi();
                 ticking = false;
             });
         },
         { passive: true }
     );
+    window.addEventListener("pageshow", updateScrollUi);
+    updateScrollUi();
 
     if (els.backToTop) {
         els.backToTop.addEventListener("click", (e) => {
