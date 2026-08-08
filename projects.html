@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0d0d0d" />
+  <title>出展一覧 | 第79回高学祭公式ウェブサイト</title>
+  <meta name="description" content="第79回高学祭の出展一覧ページです。クラス、部活動、同好会などの出展情報を検索・閲覧できます。" />
+  <link rel="icon" href="./favicon.png" type="image/png">
+
+  <link href="./assets/css/destyle.css" rel="stylesheet" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@600&family=Shippori+Mincho:wght@800&display=swap"
+    rel="stylesheet" />
+  <link href="./assets/css/style.css" rel="stylesheet" />
+
+  <link rel="canonical" href="https://kougakusai.pages.dev/projects.html" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="第79回高学祭" />
+  <meta property="og:title" content="出展一覧 | 第79回高学祭公式ウェブサイト" />
+  <meta property="og:description" content="第79回高学祭の出展一覧ページです。クラス、部活動、同好会などの出展情報を検索・閲覧できます。" />
+  <meta property="og:image" content="https://kougakusai.pages.dev/assets/images/ogp.png" />
+  <meta property="og:url" content="https://kougakusai.pages.dev/projects.html" />
+  <meta property="og:locale" content="ja_JP" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="出展一覧 | 第79回高学祭公式ウェブサイト" />
+  <meta name="twitter:description" content="第79回高学祭の出展一覧ページです。" />
+  <meta name="twitter:url" content="https://kougakusai.pages.dev/projects.html" />
+  <meta name="twitter:image" content="https://kougakusai.pages.dev/assets/images/ogp.png" />
+</head>
+
+<body>
+  <header class="scrolled">
+    <a href="./" class="logo">高輪学園 高学祭</a>
+
+    <nav class="desktop-nav" aria-label="メインナビゲーション">
+      <a href="./">トップ</a>
+      <a href="./projects.html">出展一覧</a>
+      <a href="./#access">アクセス</a>
+      <a href="./#precautions">注意事項</a>
+    </nav>
+
+    <button type="button" class="hamburger-open" id="js-hamburger-open" aria-label="メニューを開く"
+      aria-controls="js-mobile-menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <noscript>
+    <style>
+      @media screen and (max-width: 900px) {
+        .hamburger-open {
+          display: none;
+        }
+      }
+    </style>
+  </noscript>
+
+  <div class="menu-overlay" id="js-menu-overlay"></div>
+
+  <aside class="mobile-menu" id="js-mobile-menu" aria-label="モバイルメニュー" aria-hidden="true" inert>
+    <button type="button" class="hamburger-close" id="js-hamburger-close" aria-label="メニューを閉じる">
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="mobile-nav">
+      <a href="./" class="js-mobile-link">トップ</a>
+      <a href="./projects.html" class="js-mobile-link">出展一覧</a>
+      <a href="./#access" class="js-mobile-link">アクセス</a>
+      <a href="./#precautions" class="js-mobile-link">注意事項</a>
+    </nav>
+  </aside>
+
+  <main style="padding-top: 100px;">
+    <section id="projects" class="projects">
+      <div class="content-inner">
+        <h2 class="scroll-fade is-show">出展一覧</h2>
+
+        <div class="project-controls scroll-fade is-show">
+          <div class="search-box">
+            <input type="text" id="js-search-input" placeholder="出展名・場所で検索..." aria-label="出展検索" autocomplete="off"
+              spellcheck="false" />
+          </div>
+
+          <div class="project-filters" id="js-project-filters">
+            <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">すべて</button>
+            <button type="button" class="filter-btn" data-filter="c1" aria-pressed="false">中1</button>
+            <button type="button" class="filter-btn" data-filter="c2" aria-pressed="false">中2</button>
+            <button type="button" class="filter-btn" data-filter="c3" aria-pressed="false">中3</button>
+            <button type="button" class="filter-btn" data-filter="h1" aria-pressed="false">高1</button>
+            <button type="button" class="filter-btn" data-filter="h2" aria-pressed="false">高2</button>
+            <button type="button" class="filter-btn" data-filter="h3" aria-pressed="false">高3</button>
+            <button type="button" class="filter-btn" data-filter="sports" aria-pressed="false">運動部</button>
+            <button type="button" class="filter-btn" data-filter="culture" aria-pressed="false">文化部</button>
+            <button type="button" class="filter-btn" data-filter="club" aria-pressed="false">同好会</button>
+            <button type="button" class="filter-btn" data-filter="committee" aria-pressed="false">サークル（委員会）</button>
+          </div>
+        </div>
+
+        <p class="project-count scroll-fade is-show" id="js-project-count" aria-live="polite"></p>
+
+        <div class="project-grid scroll-fade is-show" id="js-project-grid">
+          <noscript>
+            <style>
+              .scroll-fade {
+                opacity: 1;
+                transform: none;
+              }
+
+              #js-project-grid > noscript {
+                display: contents;
+              }
+            </style>
+            <div class="noscript-notice" role="status">
+              <p class="noscript-notice-title">出展一覧を表示できません</p>
+              <p>このページの出展一覧はJavaScriptを使用して表示しています。<br />
+                ブラウザでJavaScriptを有効にしてから、もう一度読み込んでください。</p>
+            </div>
+          </noscript>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-overlay" id="js-modal-overlay" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="js-modal-title" tabindex="-1">
+      <button type="button" class="modal-close" id="js-modal-close" aria-label="閉じる">✕</button>
+      <div id="js-modal-body"></div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo-wrap">
+        <a href="https://takanawa.ed.jp" target="_blank" rel="noopener noreferrer">
+          <img src="./assets/images/logos/takanawa-logo.svg" alt="学校法人高輪学園" class="takanawa-logo" loading="lazy" />
+        </a>
+      </div>
+
+      <div class="footer-sns">
+        <a href="https://www.youtube.com/@takanawagakuen" target="_blank" rel="noopener noreferrer"
+          aria-label="公式YouTube">
+          <img src="./assets/images/logos/youtube-logo.svg" alt="YouTube" class="sns-icon" loading="lazy" />
+        </a>
+        <a href="https://www.instagram.com/kougakusai.official/" target="_blank" rel="noopener noreferrer"
+          aria-label="公式Instagram">
+          <img src="./assets/images/logos/instagram-logo.svg" alt="Instagram" class="sns-icon" loading="lazy" />
+        </a>
+        <a href="https://takanawa.ed.jp" target="_blank" rel="noopener noreferrer" aria-label="公式ウェブサイト">
+          <img src="./assets/images/logos/internet-logo.svg" alt="Website" class="sns-icon" loading="lazy" />
+        </a>
+      </div>
+
+      <p class="copyright">© 第79回高学祭執行部 All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <a href="#" id="back-to-top" class="back-to-top" aria-label="ページ上部へ戻る">
+    ↑
+  </a>
+
+  <script src="./assets/js/script.js" defer></script>
+</body>
+
+</html>
