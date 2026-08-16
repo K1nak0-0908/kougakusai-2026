@@ -41,6 +41,7 @@
     <a href="./" class="logo">高輪学園 高学祭</a>
 
     <nav class="desktop-nav" aria-label="メインナビゲーション">
+      <a href="#congestion">混雑状況</a>
       <a href="#projects">出展一覧</a>
       <a href="#access">アクセス</a>
       <a href="#precautions">注意事項</a>
@@ -55,6 +56,11 @@
 
   <noscript>
     <style>
+      .scroll-fade {
+        opacity: 1;
+        transform: none;
+      }
+
       @media screen and (max-width: 900px) {
         .hamburger-open {
           display: none;
@@ -72,6 +78,7 @@
     </button>
 
     <nav class="mobile-nav">
+      <a href="#congestion" class="js-mobile-link">混雑状況</a>
       <a href="#projects" class="js-mobile-link">出展一覧</a>
       <a href="#access" class="js-mobile-link">アクセス</a>
       <a href="#precautions" class="js-mobile-link">注意事項</a>
@@ -100,6 +107,19 @@
           <p class="scroll-fade">
             第79回高学祭のテーマである「Spark」には、高輪生一人ひとりの個性が輝き、爆発するような高学祭になってほしいという思いが込められています。昨年、一昨年と9千人前後のお客様にご来場いただいております。今年こそ大台の来場者数1万人突破を目標にしておりますので、ぜひ足を運んでいただき、高輪生の個性の爆発を体感してください。
           </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="congestion" class="congestion">
+      <div class="content-inner congestion-inner">
+        <h2 class="scroll-fade">混雑状況</h2>
+        <p class="congestion-desc scroll-fade">
+          会場内の混雑状況をリアルタイムでご案内します。あわせて出展の広告もご覧いただけます。
+        </p>
+
+        <div class="congestion-embed-wrap scroll-fade">
+          <iframe class="congestion-slide" title="会場混雑状況" src="" loading="lazy" allowfullscreen hidden></iframe>
         </div>
       </div>
     </section>

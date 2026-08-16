@@ -133,6 +133,13 @@ const projectsData = [
         image: "./assets/images/projects/grade/h1/h1-05.webp",
     },
     {
+        title: "禍 ー変な屋敷ー",
+        organization: "高校1年学年出展",
+        description: "生者と死者の境が曖昧なこの季節。妖怪が出ると噂の屋敷で肝試しを開催！禍々し過ぎる和風ホラー、一度訪れてみませんか…？",
+        category: "h1",
+        image: "./assets/images/projects/grade/h1/h1-06.webp",
+    },
+    {
         title: "賭輪グルイ",
         organization: "高校2年学年出展",
         description: "運と戦略で勝利をつかめ！チップを賭けて楽しむカジノ体験型カフェ『賭輪グルイ』",
@@ -280,6 +287,13 @@ const projectsData = [
         image: "./assets/images/projects/cultural/cultural-14.webp",
     },
     {
+        title: "高輪の魔術師",
+        organization: "マジック部",
+        description: "高輪の魔術師たちが、いつも何かしら不思議なことやってます。いつでもお気軽にどうぞ。",
+        category: "culture",
+        image: "./assets/images/projects/cultural/cultural-15.webp",
+    },
+    {
         title: "高輪C.C.",
         organization: "ゴルフ部",
         description: "4つのステージを巡り、合計打数の少なさを競います！どなたでも気軽にプレイでき、好スコアを記録すると豪華賞品をゲットできるかもしれません！",
@@ -297,6 +311,13 @@ const projectsData = [
         title: "ディップスじゃなくてディッピンドッツね！",
         organization: "柔道部",
         description: "-196℃のアイスクリームを食べてください！ディップスもやってみてね！？",
+        category: "sports",
+        image: "./assets/images/projects/sports/sports-03.webp",
+    },
+    {
+        title: "バスケットボール部OB戦",
+        organization: "バスケットボール部",
+        description: "高輪バスケ部OBと現役生で試合を行います。皆さんの大きな応援で盛り上げてください！",
         category: "sports",
         image: "./assets/images/projects/sports/sports-03.webp",
     },
@@ -340,7 +361,14 @@ const projectsData = [
         organization: "クイズ研究同好会",
         description: "参加者に早押しクイズを30問ほど体験させます。また、結果が良かった人には賞品があります。",
         category: "club",
-        image: "./assets/images/projects/club/club-05.webp",
+        image: "./assets/images/projects/club/club-06.webp",
+    },
+    {
+        title: "ESSの展示",
+        organization: "ESS",
+        description: "ショートフィルムとホームステイ関連のビデオを展示します",
+        category: "club",
+        image: "./assets/images/projects/club/club-07.webp",
     },
     {
         title: "赤い羽根募金",
@@ -376,6 +404,34 @@ const projectsData = [
         description: "個別に入試相談にお答えします。「学校案内・資料」はここで配布しています。",
         category: "committee",
         image: "./assets/images/projects/committee/committee-05.webp",
+    },
+    {
+        title: "TAKATAI高学祭特別号",
+        organization: "新聞サークル",
+        description: "校内紙TAKATAIの配布、校内ニュースの放映をしています。 新聞サークル3年の集大成をぜひご覧ください。",
+        category: "committee",
+        image: "./assets/images/projects/committee/committee-06.webp",
+    },
+    {
+        title: "展望喫茶",
+        organization: "同窓会",
+        description: "校舎最上階から臨む、変貌著しい高輪の眺望を同窓会伝統のコーヒーとともに是非、お楽しみください！！",
+        category: "committee",
+        image: "./assets/images/projects/committee/committee-07.webp",
+    },
+    {
+        title: "高輪PR界隈～楽しすぎて滅～",
+        organization: "学校PR委員",
+        description: "ゲームを通じて高輪を疑似体験しよう！景品もあるよ！",
+        category: "committee",
+        image: "./assets/images/projects/committee/committee-08.webp",
+    },
+    {
+        title: "帰ってきた、フランクフルト",
+        organization: "高学祭執行部OB",
+        description: "高学祭に数年ぶりにフランクフルトが帰ってきました！ 「安い！早い！うまい！」をモットーに高学祭執行部OBが真心込めて作ります。ぜひご賞味あれ！",
+        category: "committee",
+        image: "./assets/images/projects/committee/committee-09.webp",
     },
 ];
 
