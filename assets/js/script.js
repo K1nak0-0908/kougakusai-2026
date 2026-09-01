@@ -319,7 +319,7 @@ const projectsData = [
         organization: "バスケットボール部",
         description: "高輪バスケ部OBと現役生で試合を行います。皆さんの大きな応援で盛り上げてください！",
         category: "sports",
-        image: "./assets/images/projects/sports/sports-03.webp",
+        image: "./assets/images/projects/sports/sports-04.webp",
     },
     {
         title: "マケドニア料理ケバピ",
