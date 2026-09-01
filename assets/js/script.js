@@ -322,6 +322,13 @@ const projectsData = [
         image: "./assets/images/projects/sports/sports-04.webp",
     },
     {
+        title: "けんどーなつ",
+        organization: "剣道部",
+        description: "こんにちは！剣道部です。午前中の紅白戦・招待試合が終わってからの午後にドーナツの販売を行ってます！ぜひ校庭へ買いにきてください！！",
+        category: "sports",
+        image: "./assets/images/projects/sports/sports-05.webp",
+    },
+    {
         title: "マケドニア料理ケバピ",
         organization: "マケドニア同好会",
         description: "日本で食べられるのはココだけ？！マケドニア料理を是非味わってみてください。",
