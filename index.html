@@ -41,10 +41,10 @@
     <a href="./" class="logo">高輪学園 高学祭</a>
 
     <nav class="desktop-nav" aria-label="メインナビゲーション">
-      <a href="#congestion">混雑状況</a>
-      <a href="#projects">出展一覧</a>
-      <a href="#access">アクセス</a>
-      <a href="#precautions">注意事項</a>
+      <a href="./" class="js-scroll-link" data-scroll-target="congestion">混雑状況</a>
+      <a href="./" class="js-scroll-link" data-scroll-target="projects">出展一覧</a>
+      <a href="./" class="js-scroll-link" data-scroll-target="access">アクセス</a>
+      <a href="./" class="js-scroll-link" data-scroll-target="precautions">注意事項</a>
     </nav>
 
     <button type="button" class="hamburger-open" id="js-hamburger-open" aria-label="メニューを開く"
@@ -78,10 +78,10 @@
     </button>
 
     <nav class="mobile-nav">
-      <a href="#congestion" class="js-mobile-link">混雑状況</a>
-      <a href="#projects" class="js-mobile-link">出展一覧</a>
-      <a href="#access" class="js-mobile-link">アクセス</a>
-      <a href="#precautions" class="js-mobile-link">注意事項</a>
+      <a href="./" class="js-scroll-link js-mobile-link" data-scroll-target="congestion">混雑状況</a>
+      <a href="./" class="js-scroll-link js-mobile-link" data-scroll-target="projects">出展一覧</a>
+      <a href="./" class="js-scroll-link js-mobile-link" data-scroll-target="access">アクセス</a>
+      <a href="./" class="js-scroll-link js-mobile-link" data-scroll-target="precautions">注意事項</a>
     </nav>
   </aside>
 
@@ -119,7 +119,30 @@
         </p>
 
         <div class="congestion-embed-wrap scroll-fade">
-          <iframe class="congestion-slide" title="会場混雑状況" src="" loading="lazy" allowfullscreen hidden></iframe>
+          <div class="congestion-toolbar">
+            <div class="congestion-tabs" role="tablist" aria-label="混雑状況ページ切り替え">
+              <button type="button" class="congestion-tab is-active" role="tab" aria-selected="true"
+                data-slide="id.p">ページ1</button>
+              <button type="button" class="congestion-tab" role="tab" aria-selected="false"
+                data-slide="id.g3f6db1f56cd_0_41">ページ2</button>
+              <button type="button" class="congestion-tab" role="tab" aria-selected="false"
+                data-slide="id.g3f6db1f56cd_0_70">ページ3</button>
+            </div>
+          </div>
+          <div class="congestion-slides">
+            <iframe class="congestion-slide is-active" data-slide-panel="id.p" title="会場混雑状況 ページ1"
+              src="https://docs.google.com/presentation/d/e/2PACX-1vQhOG_Ce2BnsZnILWwObQKjCxzOWXOEchWvVbnLHnXPNxKA0D5g33QyrrY2y7dwB_YztBlMG0_eZXwu/pubembed?start=false&loop=false&delayms=3000&rm=minimal&slide=id.p"
+              frameborder="0" allowfullscreen="true" mozallowfullscreen="true" loading="lazy"
+              webkitallowfullscreen="true"></iframe>
+            <iframe class="congestion-slide" data-slide-panel="id.g3f6db1f56cd_0_41" title="会場混雑状況 ページ2"
+              src="https://docs.google.com/presentation/d/e/2PACX-1vQhOG_Ce2BnsZnILWwObQKjCxzOWXOEchWvVbnLHnXPNxKA0D5g33QyrrY2y7dwB_YztBlMG0_eZXwu/pubembed?start=false&loop=false&delayms=3000&rm=minimal&slide=id.g3f6db1f56cd_0_41"
+              frameborder="0" allowfullscreen="true" mozallowfullscreen="true" loading="lazy"
+              webkitallowfullscreen="true"></iframe>
+            <iframe class="congestion-slide" data-slide-panel="id.g3f6db1f56cd_0_70" title="会場混雑状況 ページ3"
+              src="https://docs.google.com/presentation/d/e/2PACX-1vQhOG_Ce2BnsZnILWwObQKjCxzOWXOEchWvVbnLHnXPNxKA0D5g33QyrrY2y7dwB_YztBlMG0_eZXwu/pubembed?start=false&loop=false&delayms=3000&rm=minimal&slide=id.g3f6db1f56cd_0_70"
+              frameborder="0" allowfullscreen="true" mozallowfullscreen="true" loading="lazy"
+              webkitallowfullscreen="true"></iframe>
+          </div>
         </div>
       </div>
     </section>
@@ -182,14 +205,14 @@
             <div class="station-group">
               <p class="station-title">【最寄り駅】</p>
               <p>
-                ・都営地下鉄浅草線・京急線 「泉岳寺駅」A2出口より徒歩約3分
+                ・都営地下鉄浅草線・京急線 「泉岳寺駅」より徒歩約3分
               </p>
               <p>
                 ・JR山手線・京浜東北線 「高輪ゲートウェイ駅」より徒歩約6分
               </p>
               <p>
                 ・東京メトロ南北線・都営地下鉄三田線
-                「白金高輪駅」1番出口より徒歩約12分
+                「白金高輪駅」より徒歩約12分
               </p>
             </div>
           </div>

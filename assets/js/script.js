@@ -648,6 +648,27 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    const congestionTabs = document.querySelectorAll(".congestion-tab");
+    const congestionPanels = document.querySelectorAll(".congestion-slide");
+    if (congestionTabs.length && congestionPanels.length) {
+        congestionTabs.forEach((tab) => {
+            tab.addEventListener("click", () => {
+                if (tab.classList.contains("is-active")) return;
+                congestionTabs.forEach((t) => {
+                    t.classList.remove("is-active");
+                    t.setAttribute("aria-selected", "false");
+                });
+                congestionPanels.forEach((p) => p.classList.remove("is-active"));
+                tab.classList.add("is-active");
+                tab.setAttribute("aria-selected", "true");
+                const target = document.querySelector(
+                    `.congestion-slide[data-slide-panel="${tab.dataset.slide}"]`
+                );
+                if (target) target.classList.add("is-active");
+            });
+        });
+    }
+
     const scrollTargets = document.querySelectorAll(".scroll-fade");
     if ("IntersectionObserver" in window) {
         const observer = new IntersectionObserver(
@@ -691,9 +712,23 @@ document.addEventListener("DOMContentLoaded", () => {
         els.closeBtn.addEventListener("click", closeMenu);
         if (els.menuOverlay) els.menuOverlay.addEventListener("click", closeMenu);
 
-        const mobileLinks = document.querySelectorAll(".js-mobile-link");
-        mobileLinks.forEach((link) => link.addEventListener("click", closeMenu));
     }
+
+    const scrollLinks = document.querySelectorAll(".js-scroll-link");
+    scrollLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+            event.preventDefault();
+            const target = document.getElementById(link.dataset.scrollTarget);
+            if (!target) return;
+
+            target.scrollIntoView({
+                behavior: getScrollBehavior(),
+                block: "start",
+            });
+            window.history.replaceState(null, "", window.location.pathname + window.location.search);
+            if (link.classList.contains("js-mobile-link")) closeMenu();
+        });
+    });
 
     if (els.modalCloseBtn) {
         els.modalCloseBtn.addEventListener("click", closeProjectModal);
