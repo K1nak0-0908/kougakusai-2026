@@ -16,7 +16,7 @@ const projectsData = [
     {
         title: "謎のお化けの巣窟",
         organization: "中学2年B組",
-        description: " 今宵、貴方は2-Bの幽霊達の巣窟へと誘われる。そしてゴールするまで様々なミッションを達成しないければならない。最後まで生きて帰れるのか、全て自分たちの運命である...。　(仮ですので、変更する可能性があります)",
+        description: " 今宵、貴方は2-Bの幽霊達の巣窟へと誘われる。そしてゴールするまで様々なミッションを達成しないければならない。最後まで生きて帰れるのか、全て自分たちの運命である...。",
         category: "c2",
         image: "./assets/images/projects/grade/c2/c2-02.webp",
     },
@@ -86,7 +86,7 @@ const projectsData = [
     {
         title: "中三エイサー",
         organization: "中学3年学年展示",
-        description: "中学三年生の生徒によるエイサーです。昼のステージや後夜祭などでも披露しますぜひご覧ください！",
+        description: "中学三年生の生徒によるエイサーです。昼のステージや後夜祭などでも披露します。ぜひご覧ください！",
         category: "c3",
         image: "./assets/images/projects/grade/c3/c3-06.webp",
     },
@@ -442,6 +442,25 @@ const projectsData = [
     },
 ];
 
+const adsData = [
+    {
+        image: "./assets/images/projects/grade/c1/c1-01.webp",
+        projectTitle: "TAKANAWA MUSIC FESTIVAL",
+    },
+    {
+        image: "./assets/images/projects/grade/h1/h1-05.webp",
+        projectTitle: "TAKANAWA SONIC 2026",
+    },
+    {
+        image: "./assets/images/projects/cultural/cultural-02.webp",
+        projectTitle: "プラネタリウムTAKANAWA",
+    },
+    {
+        image: "./assets/images/projects/committee/committee-08.webp",
+        projectTitle: "高輪PR界隈～楽しすぎて滅～",
+    },
+];
+
 let currentCategory = "all";
 let currentSearchQuery = "";
 let lastFocusedElement = null;
@@ -499,6 +518,7 @@ function renderProjects() {
         img.src = item.image;
         img.alt = item.title;
         img.loading = "lazy";
+        img.decoding = "async";
         img.onerror = () => showImageUnavailable(imgWrap, img);
 
         imgWrap.appendChild(img);
@@ -528,6 +548,107 @@ function renderProjects() {
 
         els.grid.appendChild(article);
     });
+}
+
+let adsCurrentIndex = 0;
+let adsAutoplayTimer = null;
+
+function renderAdsSlider() {
+    const track = document.getElementById("js-ads-track");
+    const dotsWrap = document.getElementById("js-ads-dots");
+    if (!track || !dotsWrap || adsData.length === 0) return;
+
+    track.replaceChildren();
+    dotsWrap.replaceChildren();
+
+    adsData.forEach((ad, i) => {
+        const projectIndex = projectsData.findIndex(
+            (p) => p.title === ad.projectTitle
+        );
+
+        const slide = document.createElement("button");
+        slide.type = "button";
+        slide.className = "ads-slide" + (i === 0 ? " is-active" : "");
+        slide.setAttribute(
+            "aria-label",
+            `\u5e83\u544a: ${ad.projectTitle}\u306e\u8a73\u7d30\u3092\u898b\u308b`
+        );
+
+const img = document.createElement("img");
+        img.src = ad.image;
+        img.alt = ad.projectTitle;
+        img.loading = i === 0 ? "eager" : "lazy";
+        img.decoding = "async";
+        img.onerror = () => showImageUnavailable(slide, img);
+
+        slide.appendChild(img);
+        slide.addEventListener("click", () => {
+            if (projectIndex >= 0) openProjectModal(projectIndex);
+        });
+
+        track.appendChild(slide);
+
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "ads-dot" + (i === 0 ? " is-active" : "");
+        dot.setAttribute(
+            "aria-label",
+            `${i + 1}\u679a\u76ee\u306e\u5e83\u544a\u3092\u8868\u793a`
+        );
+        dot.addEventListener("click", () => {
+            goToAdSlide(i);
+            restartAdsAutoplay();
+        });
+        dotsWrap.appendChild(dot);
+    });
+
+    startAdsAutoplay();
+}
+
+function goToAdSlide(index) {
+    const slides = document.querySelectorAll("#js-ads-track .ads-slide");
+    const dots = document.querySelectorAll("#js-ads-dots .ads-dot");
+    if (!slides.length) return;
+
+    adsCurrentIndex = (index + slides.length) % slides.length;
+
+    slides.forEach((s, i) =>
+        s.classList.toggle("is-active", i === adsCurrentIndex)
+    );
+    dots.forEach((d, i) =>
+        d.classList.toggle("is-active", i === adsCurrentIndex)
+    );
+}
+
+function stopAdsAutoplay() {
+    if (adsAutoplayTimer) {
+        clearInterval(adsAutoplayTimer);
+        adsAutoplayTimer = null;
+    }
+}
+
+function restartAdsAutoplay() {
+    stopAdsAutoplay();
+    startAdsAutoplay();
+}
+
+function startAdsAutoplay() {
+    const slider = document.getElementById("js-ads-slider");
+    if (!slider || adsData.length <= 1) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    stopAdsAutoplay();
+    adsAutoplayTimer = setInterval(() => {
+        goToAdSlide(adsCurrentIndex + 1);
+    }, 4000);
+
+    if (!slider.dataset.adsBound) {
+        slider.dataset.adsBound = "true";
+        slider.addEventListener("mouseenter", stopAdsAutoplay);
+        slider.addEventListener("mouseleave", startAdsAutoplay);
+        slider.addEventListener("focusin", stopAdsAutoplay);
+        slider.addEventListener("focusout", startAdsAutoplay);
+    }
 }
 
 function showImageUnavailable(container, img) {
@@ -571,6 +692,7 @@ function openProjectModal(index) {
     const img = document.createElement("img");
     img.src = item.image;
     img.alt = item.title;
+    img.decoding = "async";
     img.onerror = () => showImageUnavailable(wrap, img);
 
     wrap.appendChild(img);
@@ -803,4 +925,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     renderProjects();
+    renderAdsSlider();
 });
