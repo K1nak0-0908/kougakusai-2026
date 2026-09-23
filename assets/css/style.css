@@ -1,7 +1,6 @@
 html {
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
-  overflow-x: hidden;
   overflow-x: clip;
 }
 
@@ -13,7 +12,6 @@ body {
     sans-serif;
   font-weight: 600;
   line-height: 1.7;
-  overflow-x: hidden;
   overflow-x: clip;
 }
 
@@ -349,52 +347,6 @@ header.scrolled {
 .hero-pattern--burst .deco-square,
 .hero-pattern--burst .deco-dim {
   display: none;
-}
-
-.hero-pattern--spec .deco-burst {
-  display: none;
-}
-
-.hero-pattern--spec .deco-ring {
-  display: none;
-}
-
-.hero-pattern--spec .deco-plus {
-  display: none;
-}
-
-.hero-pattern--spec .deco-diamond {
-  display: none;
-}
-
-.hero-pattern--spec .deco-dot {
-  display: none;
-}
-
-.hero-pattern--spec .deco-cross {
-  display: block;
-}
-
-.hero-pattern--grid .deco-burst {
-  display: none;
-}
-
-.hero-pattern--grid .deco-diamond {
-  display: none;
-}
-
-.hero-pattern--grid {
-  background-image: repeating-linear-gradient(
-    0deg,
-    rgb(255 255 255 / 0.05) 0 1px,
-    transparent 1px 64px
-  );
-  background-position: center;
-  background-size: 64px 64px;
-}
-
-.hero-pattern--grid .deco-cross {
-  display: block;
 }
 
 .hero-inner {
@@ -989,10 +941,6 @@ section[id] {
   border-color: #fff;
 }
 
-.project-filters .filter-btn.is-hidden {
-  display: none !important;
-}
-
 .project-count {
   text-align: center;
   color: #ffffff80;
@@ -1422,35 +1370,6 @@ section[id] {
   opacity: 1;
   visibility: visible;
   pointer-events: none;
-}
-
-.congestion-placeholder {
-  text-align: center;
-  background: #ffffff0d;
-  border: 1px dashed #ffffff33;
-  border-radius: 12px;
-  aspect-ratio: 16 / 9;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  padding: 30px;
-  display: flex;
-}
-
-.congestion-placeholder-title {
-  color: #fff;
-  letter-spacing: 0.05em;
-  font-size: 1.3rem;
-  font-weight: 700;
-}
-
-.congestion-placeholder p:last-child {
-  color: #ffffffb3;
-  max-width: 440px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  line-height: 1.8;
 }
 
 .access-content {
@@ -2003,14 +1922,6 @@ footer {
     font-size: 0.8rem;
   }
 
-  .congestion-placeholder {
-    padding: 20px;
-  }
-
-  .congestion-placeholder-title {
-    font-size: 1.15rem;
-  }
-
   .access iframe {
     height: 280px;
   }
@@ -2097,6 +2008,7 @@ footer {
   max-width: 400px;
   margin: 44px auto 0;
   position: relative;
+  touch-action: pan-y;
 }
 
 .ads-badge {

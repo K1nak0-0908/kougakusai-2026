@@ -16,14 +16,14 @@ const projectsData = [
     {
         title: "謎のお化けの巣窟",
         organization: "中学2年B組",
-        description: " 今宵、貴方は2-Bの幽霊達の巣窟へと誘われる。そしてゴールするまで様々なミッションを達成しないければならない。最後まで生きて帰れるのか、全て自分たちの運命である...。",
+        description: "今宵、貴方は2-Bの幽霊達の巣窟へと誘われる。そしてゴールするまで様々なミッションを達成しなければならない。最後まで生きて帰れるのか、全て自分たちの運命である...。",
         category: "c2",
         image: "./assets/images/projects/grade/c2/c2-02.webp",
     },
     {
         title: "ウマ男",
         organization: "中学2年C組",
-        description: " マイナースポーツの体験ゲームで馬券をゲット！生徒が走る競馬で、実際に賭けて応援しよう！ぜひ来てください！",
+        description: "マイナースポーツの体験ゲームで馬券をゲット！生徒が走る競馬で、実際に賭けて応援しよう！ぜひ来てください！",
         category: "c2",
         image: "./assets/images/projects/grade/c2/c2-03.webp",
     },
@@ -537,9 +537,10 @@ function renderProjects() {
         const desc = document.createElement("p");
         desc.className = "project-desc";
 
+        const chars = Array.from(item.description);
         desc.textContent =
-            item.description.length > 30
-                ? item.description.slice(0, 30) + "..."
+            chars.length > 30
+                ? chars.slice(0, 30).join("") + "..."
                 : item.description;
 
         body.append(title, organization, desc);
@@ -649,6 +650,61 @@ function startAdsAutoplay() {
         slider.addEventListener("focusin", stopAdsAutoplay);
         slider.addEventListener("focusout", startAdsAutoplay);
     }
+}
+
+function initAdsSwipe() {
+    const slider = document.getElementById("js-ads-slider");
+    if (!slider || adsData.length <= 1) return;
+
+    let startX = null;
+    let startY = null;
+    let pointerId = null;
+
+    const reset = () => {
+        startX = null;
+        startY = null;
+        pointerId = null;
+    };
+
+    slider.addEventListener(
+        "pointerdown",
+        (e) => {
+            if (!e.isPrimary) return;
+            pointerId = e.pointerId;
+            startX = e.clientX;
+            startY = e.clientY;
+        },
+        { passive: true }
+    );
+
+    slider.addEventListener(
+        "pointerup",
+        (e) => {
+            if (e.pointerId !== pointerId || startX === null) return;
+            const dx = e.clientX - startX;
+            const dy = e.clientY - startY;
+            const didSwipe = Math.abs(dx) >= 48 && Math.abs(dx) > Math.abs(dy) * 1.1;
+            reset();
+
+            if (!didSwipe) return;
+
+            slider.addEventListener(
+                "click",
+                (ev) => {
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                },
+                { capture: true, once: true }
+            );
+
+            if (dx < 0) goToAdSlide(adsCurrentIndex + 1);
+            else goToAdSlide(adsCurrentIndex - 1);
+            restartAdsAutoplay();
+        },
+        { passive: true }
+    );
+
+    slider.addEventListener("pointercancel", reset, { passive: true });
 }
 
 function showImageUnavailable(container, img) {
@@ -926,4 +982,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     renderProjects();
     renderAdsSlider();
+    initAdsSwipe();
 });
