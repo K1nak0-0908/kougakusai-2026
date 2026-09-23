@@ -1,4 +1,4 @@
-const projectsData = [
+﻿const projectsData = [
     {
         title: "TAKANAWA MUSIC FESTIVAL",
         organization: "中学1年学年出展",
@@ -444,26 +444,91 @@ const projectsData = [
 
 const adsData = [
     {
-        image: "./assets/images/projects/grade/c1/c1-01.webp",
-        projectTitle: "TAKANAWA MUSIC FESTIVAL",
-    },
-    {
-        image: "./assets/images/projects/grade/h1/h1-05.webp",
+        image: "./assets/images/ads/ads-01.webp",
         projectTitle: "TAKANAWA SONIC 2026",
     },
     {
-        image: "./assets/images/projects/cultural/cultural-02.webp",
+        image: "./assets/images/ads/ads-02.webp",
+        projectTitle: "メイド喫茶・LOVE注入 ～ Love Injection ～",
+    },
+    {
+        image: "./assets/images/ads/ads-03.webp",
+        projectTitle: "禍 ー変な屋敷ー",
+    },
+    {
+        image: "./assets/images/ads/ads-04.webp",
+        projectTitle: "天空の首里ちゅらピュタ",
+    },
+    {
+        image: "./assets/images/ads/ads-05.webp",
+        projectTitle: "沖縄塩焼きそば",
+    },
+    {
+        image: "./assets/images/ads/ads-06.webp",
+        projectTitle: "中三エイサー",
+    },
+    {
+        image: "./assets/images/ads/ads-07.webp",
+        projectTitle: "琉球ハリケーン",
+    },
+    {
+        image: "./assets/images/ads/ads-08.webp",
+        projectTitle: "まぁ、メイドカフェ",
+    },
+    {
+        image: "./assets/images/ads/ads-09.webp",
         projectTitle: "プラネタリウムTAKANAWA",
     },
     {
-        image: "./assets/images/projects/committee/committee-08.webp",
-        projectTitle: "高輪PR界隈～楽しすぎて滅～",
+        image: "./assets/images/ads/ads-10.webp",
+        projectTitle: "Shall we play shogi?",
+    },
+    {
+        image: "./assets/images/ads/ads-11.webp",
+        projectTitle: "けんどーなつ",
+    },
+    {
+        image: "./assets/images/ads/ads-12.webp",
+        projectTitle: "美術廻戦 ～最高画力でブチ抜いたる！～",
+    },
+    {
+        image: "./assets/images/ads/ads-13.webp",
+        projectTitle: "鏡花水月",
+    },
+    {
+        image: "./assets/images/ads/ads-14.webp",
+        projectTitle: "映画研究部",
+    },
+    {
+        image: "./assets/images/ads/ads-15.webp",
+        projectTitle: "モケイブ2026",
+    },
+    {
+        image: "./assets/images/ads/ads-16.webp",
+        projectTitle: "鉄すぎて滅❣",
+    },
+    {
+        image: "./assets/images/ads/ads-17.webp",
+        projectTitle: "まるけん",
+    },
+    {
+        image: "./assets/images/ads/ads-18.webp",
+        projectTitle: "12の怒れる男たち",
+    },
+    {
+        image: "./assets/images/ads/ads-19.webp",
+        projectTitle: "君のハートに狙い撃ち❤️",
+        noModal: true,
     },
 ];
 
 let currentCategory = "all";
 let currentSearchQuery = "";
 let lastFocusedElement = null;
+
+const projectIndexByTitle = new Map(
+    projectsData.map((project, index) => [project.title, index])
+);
 
 let els = {};
 
@@ -476,17 +541,20 @@ function getScrollBehavior() {
 function renderProjects() {
     if (!els.grid) return;
 
-    const filtered = projectsData.filter((item) => {
-        const matchCategory =
-            currentCategory === "all" || item.category === currentCategory;
-        const matchSearch =
-            currentSearchQuery === "" ||
-            item.title.includes(currentSearchQuery) ||
-            item.organization.includes(currentSearchQuery) ||
-            item.description.includes(currentSearchQuery);
+    const query = currentSearchQuery.trim().toLowerCase();
+    const filtered = projectsData
+        .map((item, index) => ({ item, index }))
+        .filter(({ item }) => {
+            const matchCategory =
+                currentCategory === "all" || item.category === currentCategory;
+            const matchSearch =
+                query === "" ||
+                item.title.toLowerCase().includes(query) ||
+                item.organization.toLowerCase().includes(query) ||
+                item.description.toLowerCase().includes(query);
 
-        return matchCategory && matchSearch;
-    });
+            return matchCategory && matchSearch;
+        });
 
     if (els.count) {
         els.count.textContent = `該当する出展: ${filtered.length}件`;
@@ -502,8 +570,7 @@ function renderProjects() {
         return;
     }
 
-    filtered.forEach((item) => {
-        const index = projectsData.indexOf(item);
+    filtered.forEach(({ item, index }) => {
         const article = document.createElement("article");
         article.className = "project-card";
         article.dataset.id = index;
@@ -553,29 +620,28 @@ function renderProjects() {
 
 let adsCurrentIndex = 0;
 let adsAutoplayTimer = null;
+let adsSlides = [];
 
 function renderAdsSlider() {
     const track = document.getElementById("js-ads-track");
-    const dotsWrap = document.getElementById("js-ads-dots");
-    if (!track || !dotsWrap || adsData.length === 0) return;
+    if (!track || adsData.length === 0) return;
 
     track.replaceChildren();
-    dotsWrap.replaceChildren();
 
     adsData.forEach((ad, i) => {
-        const projectIndex = projectsData.findIndex(
-            (p) => p.title === ad.projectTitle
-        );
+        const projectIndex = projectIndexByTitle.get(ad.projectTitle) ?? -1;
 
         const slide = document.createElement("button");
         slide.type = "button";
-        slide.className = "ads-slide" + (i === 0 ? " is-active" : "");
+        slide.className = "ads-slide";
         slide.setAttribute(
             "aria-label",
-            `\u5e83\u544a: ${ad.projectTitle}\u306e\u8a73\u7d30\u3092\u898b\u308b`
+            ad.noModal
+                ? `\u5e83\u544a: ${ad.projectTitle}`
+                : `\u5e83\u544a: ${ad.projectTitle}\u306e\u8a73\u7d30\u3092\u898b\u308b`
         );
 
-const img = document.createElement("img");
+        const img = document.createElement("img");
         img.src = ad.image;
         img.alt = ad.projectTitle;
         img.loading = i === 0 ? "eager" : "lazy";
@@ -583,42 +649,46 @@ const img = document.createElement("img");
         img.onerror = () => showImageUnavailable(slide, img);
 
         slide.appendChild(img);
-        slide.addEventListener("click", () => {
-            if (projectIndex >= 0) openProjectModal(projectIndex);
-        });
+        if (!ad.noModal) {
+            slide.addEventListener("click", () => {
+                if (projectIndex >= 0) openProjectModal(projectIndex);
+            });
+        }
 
         track.appendChild(slide);
-
-        const dot = document.createElement("button");
-        dot.type = "button";
-        dot.className = "ads-dot" + (i === 0 ? " is-active" : "");
-        dot.setAttribute(
-            "aria-label",
-            `${i + 1}\u679a\u76ee\u306e\u5e83\u544a\u3092\u8868\u793a`
-        );
-        dot.addEventListener("click", () => {
-            goToAdSlide(i);
-            restartAdsAutoplay();
-        });
-        dotsWrap.appendChild(dot);
     });
+
+    const total = document.getElementById("js-ads-counter-total");
+    if (total) total.textContent = adsData.length;
+
+    adsSlides = Array.from(track.querySelectorAll(".ads-slide"));
+
+    goToAdSlide(0);
 
     startAdsAutoplay();
 }
 
 function goToAdSlide(index) {
-    const slides = document.querySelectorAll("#js-ads-track .ads-slide");
-    const dots = document.querySelectorAll("#js-ads-dots .ads-dot");
-    if (!slides.length) return;
+    const n = adsSlides.length;
+    if (!n) return;
 
-    adsCurrentIndex = (index + slides.length) % slides.length;
+    adsCurrentIndex = (index + n) % n;
 
-    slides.forEach((s, i) =>
-        s.classList.toggle("is-active", i === adsCurrentIndex)
-    );
-    dots.forEach((d, i) =>
-        d.classList.toggle("is-active", i === adsCurrentIndex)
-    );
+    adsSlides.forEach((s, i) => {
+        let diff = (i - adsCurrentIndex + n) % n;
+        if (diff > n / 2) diff -= n;
+
+        s.classList.remove("is-active", "is-prev", "is-next", "is-hidden");
+        s.tabIndex = diff === 0 ? 0 : -1;
+
+        if (diff === 0) s.classList.add("is-active");
+        else if (diff === 1) s.classList.add("is-next");
+        else if (diff === -1) s.classList.add("is-prev");
+        else s.classList.add("is-hidden");
+    });
+
+    const now = document.getElementById("js-ads-counter-now");
+    if (now) now.textContent = String(adsCurrentIndex + 1).padStart(2, "0");
 }
 
 function stopAdsAutoplay() {
@@ -780,7 +850,8 @@ function closeProjectModal() {
     els.modalOverlay.classList.remove("is-active");
     els.modalOverlay.setAttribute("aria-hidden", "true");
     updateScrollLock();
-    if (lastFocusedElement instanceof HTMLElement) lastFocusedElement.focus();
+    if (lastFocusedElement?.isConnected)
+        lastFocusedElement.focus();
     lastFocusedElement = null;
 }
 
@@ -974,13 +1045,53 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     if (els.searchInput) {
+        let searchTimer = null;
         els.searchInput.addEventListener("input", (e) => {
             currentSearchQuery = e.target.value.trim();
-            renderProjects();
+            clearTimeout(searchTimer);
+            searchTimer = setTimeout(renderProjects, 150);
+        });
+    }
+
+    const adsPrev = document.getElementById("js-ads-prev");
+    const adsNext = document.getElementById("js-ads-next");
+    if (adsPrev) {
+        adsPrev.addEventListener("click", () => {
+            goToAdSlide(adsCurrentIndex - 1);
+            restartAdsAutoplay();
+        });
+    }
+    if (adsNext) {
+        adsNext.addEventListener("click", () => {
+            goToAdSlide(adsCurrentIndex + 1);
+            restartAdsAutoplay();
         });
     }
 
     renderProjects();
     renderAdsSlider();
     initAdsSwipe();
+
+    const adsSliderEl = document.getElementById("js-ads-slider");
+    if (adsSliderEl && adsData.length > 1 && "IntersectionObserver" in window) {
+        let adsHasStarted = adsSliderEl.dataset.adsStarted === "true";
+        const adsObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        if (!adsHasStarted) {
+                            adsHasStarted = true;
+                            adsSliderEl.dataset.adsStarted = "true";
+                            goToAdSlide(0);
+                        }
+                        startAdsAutoplay();
+                    } else {
+                        stopAdsAutoplay();
+                    }
+                });
+            },
+            { rootMargin: "0px 0px 0px 0px" }
+        );
+        adsObserver.observe(adsSliderEl);
+    }
 });

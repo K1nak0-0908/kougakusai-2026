@@ -8,6 +8,7 @@
   <title>第79回高学祭公式ウェブサイト</title>
   <meta name="description" content="高輪中学校・高等学校で開催される第79回高学祭の公式サイトです。開催日時、出展一覧、アクセスなどをご案内します。" />
   <link rel="icon" href="./favicon.png" type="image/png" />
+  <link rel="preload" as="image" href="./assets/images/background.webp" fetchpriority="high" />
 
   <link href="./assets/css/destyle.css" rel="stylesheet" />
 
@@ -15,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@600;700&family=Shippori+Mincho:wght@800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@600;700&family=Shippori+Mincho:wght@800&family=Roboto:wght@400;700&display=swap"
     rel="stylesheet" />
   <link href="./assets/css/style.css" rel="stylesheet" />
 
@@ -159,16 +160,13 @@
           <div class="congestion-slides">
             <iframe class="congestion-slide is-active" data-slide-panel="id.p" title="会場混雑状況 ページ1"
               src="https://docs.google.com/presentation/d/e/2PACX-1vQhOG_Ce2BnsZnILWwObQKjCxzOWXOEchWvVbnLHnXPNxKA0D5g33QyrrY2y7dwB_YztBlMG0_eZXwu/pubembed?start=false&loop=false&delayms=3000&rm=minimal&slide=id.p"
-              frameborder="0" allowfullscreen="true" mozallowfullscreen="true" loading="lazy"
-              webkitallowfullscreen="true"></iframe>
+              allowfullscreen="true" loading="lazy"></iframe>
             <iframe class="congestion-slide" data-slide-panel="id.g3f6db1f56cd_0_41" title="会場混雑状況 ページ2"
               src="https://docs.google.com/presentation/d/e/2PACX-1vQhOG_Ce2BnsZnILWwObQKjCxzOWXOEchWvVbnLHnXPNxKA0D5g33QyrrY2y7dwB_YztBlMG0_eZXwu/pubembed?start=false&loop=false&delayms=3000&rm=minimal&slide=id.g3f6db1f56cd_0_41"
-              frameborder="0" allowfullscreen="true" mozallowfullscreen="true" loading="lazy"
-              webkitallowfullscreen="true"></iframe>
+              allowfullscreen="true" loading="lazy"></iframe>
             <iframe class="congestion-slide" data-slide-panel="id.g3f6db1f56cd_0_70" title="会場混雑状況 ページ3"
               src="https://docs.google.com/presentation/d/e/2PACX-1vQhOG_Ce2BnsZnILWwObQKjCxzOWXOEchWvVbnLHnXPNxKA0D5g33QyrrY2y7dwB_YztBlMG0_eZXwu/pubembed?start=false&loop=false&delayms=3000&rm=minimal&slide=id.g3f6db1f56cd_0_70"
-              frameborder="0" allowfullscreen="true" mozallowfullscreen="true" loading="lazy"
-              webkitallowfullscreen="true"></iframe>
+              allowfullscreen="true" loading="lazy"></iframe>
           </div>
         </div>
       </div>
@@ -187,16 +185,26 @@
             aria-label="出展PR">
             <span class="ads-badge">PICK UP</span>
             <div class="ads-track" id="js-ads-track"></div>
-            <div class="ads-dots" id="js-ads-dots"></div>
-            <noscript>
-              <style>
-                .scroll-fade {
-                  opacity: 1;
-                  transform: none;
-                }
-              </style>
-            </noscript>
-          </div>
+            <div class="ads-controls" id="js-ads-controls">
+              <button type="button" class="ads-nav" id="js-ads-prev" aria-label="前の広告へ">
+                <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+                  <path d="M15 5 L8.5 12 L15 19" fill="none" stroke="currentColor" stroke-width="2.4"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              <p class="ads-counter" id="js-ads-counter" aria-live="polite">
+                <span class="ads-counter-now" id="js-ads-counter-now">01</span>
+                <span class="ads-counter-sep" aria-hidden="true">/</span>
+                <span class="ads-counter-total" id="js-ads-counter-total">19</span>
+              </p>
+              <button type="button" class="ads-nav" id="js-ads-next" aria-label="次の広告へ">
+                <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+                  <path d="M9 5 L15.5 12 L9 19" fill="none" stroke="currentColor" stroke-width="2.4"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+            </div>
         </section>
 
         <div class="projects-link-container scroll-fade">
