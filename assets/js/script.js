@@ -904,25 +904,38 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    const CONGESTION_EMBED_BASE =
+        "https://docs.google.com/presentation/d/e/2PACX-1vQhOG_Ce2BnsZnILWwObQKjCxzOWXOEchWvVbnLHnXPNxKA0D5g33QyrrY2y7dwB_YztBlMG0_eZXwu/pubembed?start=false&loop=false&delayms=3000&rm=minimal&slide=";
     const congestionTabs = document.querySelectorAll(".congestion-tab");
-    const congestionPanels = document.querySelectorAll(".congestion-slide");
-    if (congestionTabs.length && congestionPanels.length) {
+    const congestionFrame = document.getElementById("js-congestion-frame");
+    if (congestionTabs.length && congestionFrame) {
+        const loadedSlides = new Set();
+        const activateTab = (tab) => {
+            congestionTabs.forEach((t) => {
+                t.classList.remove("is-active");
+                t.setAttribute("aria-selected", "false");
+            });
+            tab.classList.add("is-active");
+            tab.setAttribute("aria-selected", "true");
+
+            const slideId = tab.dataset.slide;
+            if (!slideId || loadedSlides.has(slideId)) return;
+            loadedSlides.add(slideId);
+            congestionFrame.src = CONGESTION_EMBED_BASE + slideId;
+        };
+
         congestionTabs.forEach((tab) => {
             tab.addEventListener("click", () => {
                 if (tab.classList.contains("is-active")) return;
-                congestionTabs.forEach((t) => {
-                    t.classList.remove("is-active");
-                    t.setAttribute("aria-selected", "false");
-                });
-                congestionPanels.forEach((p) => p.classList.remove("is-active"));
-                tab.classList.add("is-active");
-                tab.setAttribute("aria-selected", "true");
-                const target = document.querySelector(
-                    `.congestion-slide[data-slide-panel="${tab.dataset.slide}"]`
-                );
-                if (target) target.classList.add("is-active");
+                activateTab(tab);
             });
         });
+
+        const initialTab = document.querySelector(".congestion-tab.is-active");
+        if (initialTab?.dataset.slide) {
+            loadedSlides.add(initialTab.dataset.slide);
+            congestionFrame.src = CONGESTION_EMBED_BASE + initialTab.dataset.slide;
+        }
     }
 
     const scrollTargets = document.querySelectorAll(".scroll-fade");

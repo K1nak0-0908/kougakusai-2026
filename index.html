@@ -14,10 +14,17 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://docs.google.com" />
 
-  <link
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@600;700&family=Shippori+Mincho:wght@800&family=Roboto:wght@400;700&display=swap" />
+  <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@600;700&family=Shippori+Mincho:wght@800&family=Roboto:wght@400;700&display=swap"
-    rel="stylesheet" />
+    media="print" onload="this.media='all'" />
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@600;700&family=Shippori+Mincho:wght@800&family=Roboto:wght@400;700&display=swap" />
+  </noscript>
   <link href="./assets/css/style.css" rel="stylesheet" />
 
   <link rel="canonical" href="https://kougakusai.pages.dev/" />
@@ -158,14 +165,7 @@
             </div>
           </div>
           <div class="congestion-slides">
-            <iframe class="congestion-slide is-active" data-slide-panel="id.p" title="会場混雑状況 ページ1"
-              src="https://docs.google.com/presentation/d/e/2PACX-1vQhOG_Ce2BnsZnILWwObQKjCxzOWXOEchWvVbnLHnXPNxKA0D5g33QyrrY2y7dwB_YztBlMG0_eZXwu/pubembed?start=false&loop=false&delayms=3000&rm=minimal&slide=id.p"
-              allowfullscreen="true" loading="lazy"></iframe>
-            <iframe class="congestion-slide" data-slide-panel="id.g3f6db1f56cd_0_41" title="会場混雑状況 ページ2"
-              src="https://docs.google.com/presentation/d/e/2PACX-1vQhOG_Ce2BnsZnILWwObQKjCxzOWXOEchWvVbnLHnXPNxKA0D5g33QyrrY2y7dwB_YztBlMG0_eZXwu/pubembed?start=false&loop=false&delayms=3000&rm=minimal&slide=id.g3f6db1f56cd_0_41"
-              allowfullscreen="true" loading="lazy"></iframe>
-            <iframe class="congestion-slide" data-slide-panel="id.g3f6db1f56cd_0_70" title="会場混雑状況 ページ3"
-              src="https://docs.google.com/presentation/d/e/2PACX-1vQhOG_Ce2BnsZnILWwObQKjCxzOWXOEchWvVbnLHnXPNxKA0D5g33QyrrY2y7dwB_YztBlMG0_eZXwu/pubembed?start=false&loop=false&delayms=3000&rm=minimal&slide=id.g3f6db1f56cd_0_70"
+            <iframe class="congestion-slide is-active" id="js-congestion-frame" title="会場混雑状況"
               allowfullscreen="true" loading="lazy"></iframe>
           </div>
         </div>
