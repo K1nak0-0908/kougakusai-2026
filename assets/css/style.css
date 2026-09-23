@@ -2016,7 +2016,7 @@ footer {
 }
 
 .ads-badge {
-  z-index: 2;
+  z-index: 5;
   color: #ffffffcc;
   letter-spacing: 0.1em;
   background: #00000099;
@@ -2028,6 +2028,7 @@ footer {
   position: absolute;
   top: 12px;
   left: 12px;
+  pointer-events: none;
 }
 
 .ads-track {
