@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0d0d0d" />
+  <title>タイムテーブル | 第79回高学祭公式ウェブサイト</title>
+  <meta name="description" content="第79回高学祭のタイムテーブルページです。外ステージ・体育館3階・講堂で行われる各企画の開催時間をご案内します。" />
+  <link rel="icon" href="./favicon.png" type="image/png">
+
+  <link href="./assets/css/destyle.css" rel="stylesheet" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@600;700&family=Shippori+Mincho:wght@800&family=Roboto:wght@400;700&display=swap" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@600;700&family=Shippori+Mincho:wght@800&family=Roboto:wght@400;700&display=swap"
+    media="print" onload="this.media='all'" />
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@600;700&family=Shippori+Mincho:wght@800&family=Roboto:wght@400;700&display=swap" />
+  </noscript>
+  <link href="./assets/css/style.css" rel="stylesheet" />
+
+  <link rel="canonical" href="https://kougakusai.pages.dev/timetable.html" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="第79回高学祭" />
+  <meta property="og:title" content="タイムテーブル | 第79回高学祭公式ウェブサイト" />
+  <meta property="og:description" content="第79回高学祭のタイムテーブルページです。外ステージ・体育館3階・講堂で行われる各企画の開催時間をご案内します。" />
+  <meta property="og:image" content="https://kougakusai.pages.dev/assets/images/ogp.png" />
+  <meta property="og:url" content="https://kougakusai.pages.dev/timetable.html" />
+  <meta property="og:locale" content="ja_JP" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="タイムテーブル | 第79回高学祭公式ウェブサイト" />
+  <meta name="twitter:description" content="第79回高学祭のタイムテーブルページです。" />
+  <meta name="twitter:url" content="https://kougakusai.pages.dev/timetable.html" />
+  <meta name="twitter:image" content="https://kougakusai.pages.dev/assets/images/ogp.png" />
+</head>
+
+<body>
+  <header class="scrolled">
+    <a href="./" class="logo">高輪学園 高学祭</a>
+
+    <nav class="desktop-nav" aria-label="メインナビゲーション">
+      <a href="./">トップ</a>
+      <a href="./#congestion">混雑状況</a>
+      <a href="./projects.html">出展一覧</a>
+      <a href="./timetable.html">タイムテーブル</a>
+      <a href="./#access">アクセス</a>
+      <a href="./#precautions">注意事項</a>
+    </nav>
+
+    <button type="button" class="hamburger-open" id="js-hamburger-open" aria-label="メニューを開く"
+      aria-controls="js-mobile-menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <noscript>
+    <style>
+      @media screen and (max-width: 900px) {
+        .hamburger-open {
+          display: none;
+        }
+      }
+    </style>
+  </noscript>
+
+  <div class="menu-overlay" id="js-menu-overlay"></div>
+
+  <aside class="mobile-menu" id="js-mobile-menu" aria-label="モバイルメニュー" aria-hidden="true" inert>
+    <button type="button" class="hamburger-close" id="js-hamburger-close" aria-label="メニューを閉じる">
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="mobile-nav">
+      <a href="./" class="js-mobile-link">トップ</a>
+      <a href="./#congestion" class="js-mobile-link">混雑状況</a>
+      <a href="./projects.html" class="js-mobile-link">出展一覧</a>
+      <a href="./timetable.html" class="js-mobile-link">タイムテーブル</a>
+      <a href="./#access" class="js-mobile-link">アクセス</a>
+      <a href="./#precautions" class="js-mobile-link">注意事項</a>
+    </nav>
+  </aside>
+
+  <main class="subpage-main">
+    <section id="timetable" class="timetable">
+      <div class="section-deco" data-section="timetable" aria-hidden="true">
+        <span class="d-ring--arc pos-1"></span>
+        <span class="d-route d-size-lg pos-2"></span>
+      </div>
+      <div class="content-inner">
+        <h2 class="scroll-fade is-show">タイムテーブル</h2>
+        <p class="timetable-desc scroll-fade is-show">
+          外ステージ・体育館3階・講堂で行われる各企画の開催時間です。日程を切り替えてご覧いただけます。時間は予告なく変更となる場合がございます。
+        </p>
+
+        <div class="timetable-toolbar scroll-fade is-show">
+          <div class="timetable-tabs" role="tablist" aria-label="タイムテーブル日程切り替え">
+            <button type="button" class="timetable-tab is-active" role="tab" aria-selected="true"
+              data-day="1">1日目（9/26 土）</button>
+            <button type="button" class="timetable-tab" role="tab" aria-selected="false"
+              data-day="2">2日目（9/27 日）</button>
+          </div>
+        </div>
+
+        <!-- 1日目 -->
+        <div class="timetable-day is-active scroll-fade is-show" data-day-panel="1">
+          <div class="timetable-calendar-scroll">
+            <div class="timetable-calendar">
+              <div class="timetable-calendar-header">
+                <div class="timetable-axis-spacer" aria-hidden="true"></div>
+                <div class="timetable-header-col">外ステージ</div>
+                <div class="timetable-header-col">体育館3階</div>
+                <div class="timetable-header-col">講堂</div>
+              </div>
+              <div class="timetable-calendar-body">
+                <div class="timetable-axis" aria-hidden="true">
+                  <span style="top: 0px">10:00</span>
+                  <span style="top: 120px">11:00</span>
+                  <span style="top: 240px">12:00</span>
+                  <span style="top: 360px">13:00</span>
+                  <span style="top: 480px">14:00</span>
+                  <span style="top: 600px">15:00</span>
+                  <span style="top: 720px">16:00</span>
+                </div>
+                <div class="timetable-columns-wrap">
+                  <div class="timetable-gridlines" aria-hidden="true"></div>
+
+                  <div class="timetable-column">
+                    <div class="timetable-event" style="top: 0px; height: 20px;" title="10:00-10:10 オープニング">
+                      <span class="timetable-event-time">10:00</span>
+                      <span class="timetable-event-name">オープニング</span>
+                    </div>
+                    <div class="timetable-event" style="top: 20px; height: 60px;"
+                      title="10:10-10:40 書道部「鏡花水月」">
+                      <span class="timetable-event-time">10:10</span>
+                      <span class="timetable-event-name">書道部「鏡花水月」</span>
+                    </div>
+                    <div class="timetable-event" style="top: 120px; height: 30px;"
+                      title="11:00-11:15 ダンス同好会「Dancing Takanawa」">
+                      <span class="timetable-event-time">11:00</span>
+                      <span class="timetable-event-name">ダンス同好会「Dancing Takanawa」</span>
+                    </div>
+                    <div class="timetable-event" style="top: 190px; height: 30px;"
+                      title="11:35-11:50 高2パフォーマンス「港区男子」">
+                      <span class="timetable-event-time">11:35</span>
+                      <span class="timetable-event-name">高2パフォーマンス「港区男子」</span>
+                    </div>
+                    <div class="timetable-event" style="top: 330px; height: 30px;"
+                      title="12:45-13:00 高1パフォーマンス「TAKANAWA SONIC 2026」">
+                      <span class="timetable-event-time">12:45</span>
+                      <span class="timetable-event-name">高1パフォーマンス「TAKANAWA SONIC 2026」</span>
+                    </div>
+                    <div class="timetable-event" style="top: 400px; height: 40px;"
+                      title="13:20-13:40 弦楽部「第12回定期演奏会「前進 ～GENGAKU CHALLENGE～」」">
+                      <span class="timetable-event-time">13:20</span>
+                      <span class="timetable-event-name">弦楽部「第12回定期演奏会「前進 ～GENGAKU
+                        CHALLENGE～」」</span>
+                    </div>
+                    <div class="timetable-event" style="top: 480px; height: 30px;"
+                      title="14:00-14:15 中三パフォーマンス「エイサー」">
+                      <span class="timetable-event-time">14:00</span>
+                      <span class="timetable-event-name">中三パフォーマンス「エイサー」</span>
+                    </div>
+                    <div class="timetable-event" style="top: 560px; height: 90px;"
+                      title="14:40-15:25 高学祭執行部「ビンゴ大会」">
+                      <span class="timetable-event-time">14:40</span>
+                      <span class="timetable-event-name">高学祭執行部「ビンゴ大会」</span>
+                    </div>
+                  </div>
+
+                  <div class="timetable-column">
+                    <div class="timetable-event" style="top: 0px; height: 360px;"
+                      title="10:00-13:00 バトミントン部「バトミントン部OB戦」">
+                      <span class="timetable-event-time">10:00</span>
+                      <span class="timetable-event-name">バトミントン部「バトミントン部OB戦」</span>
+                    </div>
+                    <div class="timetable-event" style="top: 360px; height: 360px;"
+                      title="13:00-16:00 バレーボール部「バレーボール部OB戦」">
+                      <span class="timetable-event-time">13:00</span>
+                      <span class="timetable-event-name">バレーボール部「バレーボール部OB戦」</span>
+                    </div>
+                  </div>
+
+                  <div class="timetable-column">
+                    <div class="timetable-event" style="top: 90px; height: 270px;" title="10:45-13:00 軽音楽部「響宴」">
+                      <span class="timetable-event-time">10:45</span>
+                      <span class="timetable-event-name">軽音楽部「響宴」</span>
+                    </div>
+                    <div class="timetable-event" style="top: 500px; height: 160px;"
+                      title="14:10-15:30 吹奏楽部「ジュラシック・プラス～新たなる音～」">
+                      <span class="timetable-event-time">14:10</span>
+                      <span class="timetable-event-name">吹奏楽部「ジュラシック・プラス～新たなる音～」</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="timetable-legend">左右にスクロールするとすべての会場をご覧いただけます。</p>
+        </div>
+
+        <div class="timetable-day scroll-fade is-show" data-day-panel="2">
+          <div class="timetable-calendar-scroll">
+            <div class="timetable-calendar">
+              <div class="timetable-calendar-header">
+                <div class="timetable-axis-spacer" aria-hidden="true"></div>
+                <div class="timetable-header-col">外ステージ</div>
+                <div class="timetable-header-col">体育館3階</div>
+                <div class="timetable-header-col">講堂</div>
+              </div>
+              <div class="timetable-calendar-body">
+                <div class="timetable-axis" aria-hidden="true">
+                  <span style="top: 0px">10:00</span>
+                  <span style="top: 120px">11:00</span>
+                  <span style="top: 240px">12:00</span>
+                  <span style="top: 360px">13:00</span>
+                  <span style="top: 480px">14:00</span>
+                  <span style="top: 600px">15:00</span>
+                  <span style="top: 720px">16:00</span>
+                </div>
+                <div class="timetable-columns-wrap">
+                  <div class="timetable-gridlines" aria-hidden="true"></div>
+
+                  <div class="timetable-column">
+                    <div class="timetable-event" style="top: 0px; height: 20px;" title="10:00-10:10 オープニング">
+                      <span class="timetable-event-time">10:00</span>
+                      <span class="timetable-event-name">オープニング</span>
+                    </div>
+                    <div class="timetable-event" style="top: 20px; height: 60px;"
+                      title="10:10-10:40 書道部「鏡花水月」">
+                      <span class="timetable-event-time">10:10</span>
+                      <span class="timetable-event-name">書道部「鏡花水月」</span>
+                    </div>
+                    <div class="timetable-event" style="top: 120px; height: 30px;"
+                      title="11:00-11:15 ダンス同好会「Dancing Takanawa」">
+                      <span class="timetable-event-time">11:00</span>
+                      <span class="timetable-event-name">ダンス同好会「Dancing Takanawa」</span>
+                    </div>
+                    <div class="timetable-event" style="top: 190px; height: 30px;"
+                      title="11:35-11:50 高2パフォーマンス「港区男子」">
+                      <span class="timetable-event-time">11:35</span>
+                      <span class="timetable-event-name">高2パフォーマンス「港区男子」</span>
+                    </div>
+                    <div class="timetable-event" style="top: 330px; height: 30px;"
+                      title="12:45-13:00 高1パフォーマンス「TAKANAWA SONIC 2026」">
+                      <span class="timetable-event-time">12:45</span>
+                      <span class="timetable-event-name">高1パフォーマンス「TAKANAWA SONIC 2026」</span>
+                    </div>
+                    <div class="timetable-event" style="top: 400px; height: 40px;"
+                      title="13:20-13:40 弦楽部「第12回定期演奏会「前進 ～GENGAKU CHALLENGE～」」">
+                      <span class="timetable-event-time">13:20</span>
+                      <span class="timetable-event-name">弦楽部「第12回定期演奏会「前進 ～GENGAKU
+                        CHALLENGE～」」</span>
+                    </div>
+                    <div class="timetable-event" style="top: 480px; height: 30px;"
+                      title="14:00-14:15 中三パフォーマンス「エイサー」">
+                      <span class="timetable-event-time">14:00</span>
+                      <span class="timetable-event-name">中三パフォーマンス「エイサー」</span>
+                    </div>
+                    <div class="timetable-event" style="top: 560px; height: 90px;"
+                      title="14:40-15:25 高学祭執行部「ビンゴ大会」">
+                      <span class="timetable-event-time">14:40</span>
+                      <span class="timetable-event-name">高学祭執行部「ビンゴ大会」</span>
+                    </div>
+                    <div class="timetable-event" style="top: 650px; height: 70px;"
+                      title="15:25～ 高学祭執行部「後夜祭整理券配布」">
+                      <span class="timetable-event-time">15:25</span>
+                      <span class="timetable-event-name">高学祭執行部「後夜祭整理券配布」</span>
+                    </div>
+                  </div>
+
+                  <div class="timetable-column">
+                    <div class="timetable-event" style="top: 360px; height: 360px;"
+                      title="13:00-16:00 バスケットボール部「バスケットボール部OB戦」">
+                      <span class="timetable-event-time">13:00</span>
+                      <span class="timetable-event-name">バスケットボール部「バスケットボール部OB戦」</span>
+                    </div>
+                  </div>
+
+                  <div class="timetable-column">
+                    <div class="timetable-event" style="top: 90px; height: 150px;"
+                      title="10:45-12:00 吹奏楽部「ジュラシック・プラス～新たなる音～」">
+                      <span class="timetable-event-time">10:45</span>
+                      <span class="timetable-event-name">吹奏楽部「ジュラシック・プラス～新たなる音～」</span>
+                    </div>
+                    <div class="timetable-event" style="top: 390px; height: 240px;" title="13:15-15:15 軽音楽部「響宴」">
+                      <span class="timetable-event-time">13:15</span>
+                      <span class="timetable-event-name">軽音楽部「響宴」</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="timetable-legend">左右にスクロールするとすべての会場をご覧いただけます。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo-wrap">
+        <a href="https://takanawa.ed.jp" target="_blank" rel="noopener noreferrer">
+          <img src="./assets/images/logos/takanawa-logo.svg" alt="学校法人高輪学園" class="takanawa-logo" loading="lazy" />
+        </a>
+      </div>
+
+      <div class="footer-sns">
+        <a href="https://www.youtube.com/@takanawagakuen" target="_blank" rel="noopener noreferrer"
+          aria-label="公式YouTube">
+          <img src="./assets/images/logos/youtube-logo.svg" alt="YouTube" class="sns-icon" loading="lazy" />
+        </a>
+        <a href="https://www.instagram.com/kougakusai.official/" target="_blank" rel="noopener noreferrer"
+          aria-label="公式Instagram">
+          <img src="./assets/images/logos/instagram-logo.svg" alt="Instagram" class="sns-icon" loading="lazy" />
+        </a>
+        <a href="https://takanawa.ed.jp" target="_blank" rel="noopener noreferrer" aria-label="公式ウェブサイト">
+          <img src="./assets/images/logos/internet-logo.svg" alt="Website" class="sns-icon" loading="lazy" />
+        </a>
+      </div>
+
+      <p class="copyright">© 第79回高学祭執行部 All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <a href="#" id="back-to-top" class="back-to-top" aria-label="ページ上部へ戻る">
+    ↑
+  </a>
+
+  <script src="./assets/js/script.js" defer></script>
+</body>
+
+</html>
