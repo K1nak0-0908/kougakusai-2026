@@ -1988,7 +1988,7 @@ footer {
 
   .mobile-menu {
     z-index: 1001;
-    background-color: #0d0d0d;
+    background-color: #0d0d0d6b;
     border-left: 1px solid #ffffff26;
     flex-direction: column;
     width: 280px;
