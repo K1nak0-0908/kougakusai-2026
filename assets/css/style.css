@@ -1469,7 +1469,7 @@ section[id] {
 }
 
 .timetable-header-col {
-  flex: 1 1 auto;
+  flex: 1 1 150px;
   min-width: 150px;
   text-align: center;
   color: #fff;
@@ -1527,7 +1527,7 @@ section[id] {
 
 .timetable-column {
   --tt-height: 720px;
-  flex: 1 1 auto;
+  flex: 1 1 150px;
   min-width: 150px;
   height: var(--tt-height);
   border-left: 1px solid #ffffff14;
