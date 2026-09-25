@@ -621,6 +621,18 @@ function getProjectIndexForEvent(eventName) {
   return index === undefined ? -1 : index;
 }
 
+function getEventColor(eventEl) {
+  const venue = getTimetableVenueFromEvent(eventEl);
+
+  const venueColorMap = {
+    外ステージ: "hsl(356, 100%, 40%)",
+    体育館3階: "hsl(140, 90%, 33%)",
+    講堂: "hsl(215, 95%, 42%)",
+  };
+
+  return venueColorMap[venue] || "#fff";
+}
+
 let els = {};
 
 function getScrollBehavior() {
@@ -1278,6 +1290,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const nameEl = eventEl.querySelector(".timetable-event-name");
 
     const eventName = nameEl?.textContent.trim() || "";
+
+    eventEl.style.setProperty("--tt-event-color", getEventColor(eventEl));
 
     const projectIndex = getProjectIndexForEvent(eventName);
 

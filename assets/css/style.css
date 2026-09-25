@@ -1543,7 +1543,7 @@ section[id] {
   left: 6px;
   right: 6px;
   background: #ffffff12;
-  border-left: 3px solid #fff;
+  border-left: 3px solid var(--tt-event-color, #fff);
   border-radius: 6px;
   padding: 4px 9px;
   display: flex;
