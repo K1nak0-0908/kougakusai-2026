@@ -1450,7 +1450,7 @@ section[id] {
 
 .timetable-calendar {
   min-width: 100%;
-  width: max-content;
+  width: 100%;
 }
 
 .timetable-calendar-header {
@@ -2252,6 +2252,10 @@ footer {
   .timetable-header-col,
   .timetable-column {
     min-width: clamp(220px, 64vw, 280px);
+  }
+
+  .timetable-calendar {
+    min-width: calc(48px + clamp(220px, 64vw, 280px) * 3);
   }
 
   .timetable-axis-spacer,
