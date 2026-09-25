@@ -229,6 +229,23 @@ const projectsData = [
     category: "sports",
     image: "./assets/images/projects/sports/sports-03.webp",
   },
+
+  {
+    title: "バスケットボール部OB戦",
+    location: "体育館3階",
+    description:
+      "高輪バスケ部OBと現役生で試合を行います。皆さんの大きな応援で盛り上げてください！",
+    category: "sports",
+    image: "./assets/images/projects/sports/sports-04.webp",
+  },
+  {
+    title: "バレーボール部OB戦",
+    location: "体育館3階",
+    description:
+      "OB戦",
+    category: "sports",
+    image: "./assets/images/projects/sports/sports-02.webp",
+  },
   {
     title: "高輪C.C.",
     location: "4階テラス",
@@ -572,6 +589,38 @@ const projectIndexByTitle = new Map(
   projectsData.map((project, index) => [project.title, index])
 );
 
+const timetableEventProjectMap = {
+  "書道部「鏡花水月」": "鏡花水月",
+  "ダンス同好会「dancingtakanawa」": "DANCING TAKANAWA",
+  "高2パフォーマンス「港区男子」": "港区男子",
+  "高1パフォーマンス「takanawasonic2026」": "TAKANAWA SONIC 2026",
+  "弦楽部「第12回定期演奏会「前進～gengakuchallenge～」」":
+    "第12回定期演奏会前進 ～GENGAKU CHALLENGE～",
+  "中三パフォーマンス「エイサー」": "中学3年エイサー",
+  "吹奏楽部「ジュラシック・プラス～新たなる音～」":
+    "ジュラシック・ブラス～新たなる音～",
+  "バレーボール部「バレーボール部ob戦」": "バレーボール部OB戦",
+  "バスケットボール部「バスケットボール部ob戦」": "バスケットボール部OB戦",
+};
+
+function normalizeEventKey(value) {
+  return String(value)
+    .replace(/[\s\u3000]/g, "")
+    .toLowerCase();
+}
+
+function getProjectIndexForEvent(eventName) {
+  if (!eventName) return -1;
+
+  const projectTitle = timetableEventProjectMap[normalizeEventKey(eventName)];
+
+  if (!projectTitle) return -1;
+
+  const index = projectIndexByTitle.get(projectTitle);
+
+  return index === undefined ? -1 : index;
+}
+
 let els = {};
 
 function getScrollBehavior() {
@@ -878,7 +927,7 @@ function initAdsSwipe() {
 function showImageUnavailable(container, img) {
   img.remove();
   container.classList.add("image-unavailable");
-  container.setAttribute("aria-label", "画像準備中");
+  container.setAttribute("aria-label", "NO IMAGE");
 }
 
 function updateScrollLock() {
@@ -908,7 +957,7 @@ function trapFocus(event, container) {
   }
 }
 
-function openProjectModal(index) {
+function openProjectModal(index, venue) {
   const item = projectsData[index];
 
   if (!item || !els.modalOverlay || !els.modalBody) {
@@ -939,7 +988,7 @@ function openProjectModal(index) {
         d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"
       />
     </svg>
-    <span>${item.location}</span>
+    <span>${getTimetableVenueName(venue || item.location)}</span>
   `;
 
   const title = document.createElement("h3");
@@ -954,6 +1003,91 @@ function openProjectModal(index) {
   desc.textContent = item.description;
 
   els.modalBody.append(wrap, location, title, desc);
+
+  lastFocusedElement = document.activeElement;
+
+  els.modalOverlay.classList.add("is-active");
+
+  els.modalOverlay.setAttribute("aria-hidden", "false");
+
+  updateScrollLock();
+
+  els.modalCloseBtn?.focus();
+}
+
+function getTimetableVenueName(location) {
+  const venueMap = {
+    外ステージ: "外ステージ",
+    体育館3階: "体育館3階",
+    講堂: "講堂",
+  };
+
+  return venueMap[location] || location;
+}
+
+function getTimetableVenueFromEvent(eventEl) {
+  const dayPanel = eventEl.closest(".timetable-day");
+  const column = eventEl.closest(".timetable-column");
+  const columns = Array.from(dayPanel?.querySelectorAll(".timetable-column") ?? []);
+  const headers = Array.from(dayPanel?.querySelectorAll(".timetable-header-col") ?? []);
+
+  const columnIndex = columns.indexOf(column);
+
+  return getTimetableVenueName(
+    headers[columnIndex]?.textContent?.trim() || ""
+  );
+}
+
+function openTimetableFallbackModal(eventEl) {
+  if (!els.modalOverlay || !els.modalBody) return;
+
+  const location = getTimetableVenueFromEvent(eventEl);
+
+  const nameEl = eventEl.querySelector(".timetable-event-name");
+  const eventName = nameEl?.textContent?.trim() || "";
+
+  const titleText = String(eventEl.title || "");
+
+  const timeMatch = titleText.match(/^\s*(\d{1,2}:\d{2})-(\d{1,2}:\d{2})/);
+
+  const timeRange = timeMatch
+    ? `${timeMatch[1]}～${timeMatch[2]}`
+    : (eventEl.querySelector(".timetable-event-time")?.textContent?.trim() || "");
+
+  els.modalBody.replaceChildren();
+
+  const wrap = document.createElement("div");
+  wrap.className = "modal-img-wrap image-unavailable";
+
+  const locationEl = document.createElement("span");
+  locationEl.className = "modal-location";
+
+  locationEl.innerHTML = `
+    <svg class="location-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"
+      />
+    </svg>
+    <span>${location}</span>
+  `;
+
+  const title = document.createElement("h3");
+
+  title.className = "modal-title";
+  title.id = "js-modal-title";
+  title.textContent = eventName;
+
+  const desc = document.createElement("p");
+
+  desc.className = "modal-desc";
+
+  if (timeRange) {
+    desc.textContent = `開催時間: ${timeRange}`;
+    els.modalBody.append(wrap, locationEl, title, desc);
+  } else {
+    els.modalBody.append(wrap, locationEl, title);
+  }
 
   lastFocusedElement = document.activeElement;
 
@@ -1137,6 +1271,54 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+
+  const timetableEvents = document.querySelectorAll(".timetable-event");
+
+  timetableEvents.forEach((eventEl) => {
+    const nameEl = eventEl.querySelector(".timetable-event-name");
+
+    const eventName = nameEl?.textContent.trim() || "";
+
+    const projectIndex = getProjectIndexForEvent(eventName);
+
+    if (projectIndex < 0) {
+      eventEl.classList.add("is-clickable");
+      eventEl.tabIndex = 0;
+      eventEl.setAttribute("role", "button");
+      eventEl.setAttribute("aria-label", `${eventName}の詳細を表示`);
+
+      const openFallback = () => openTimetableFallbackModal(eventEl);
+
+      eventEl.addEventListener("click", openFallback);
+
+      eventEl.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openFallback();
+        }
+      });
+
+      return;
+    }
+
+    const venue = getTimetableVenueFromEvent(eventEl);
+
+    const openProject = () => openProjectModal(projectIndex, venue);
+
+    eventEl.classList.add("is-clickable");
+    eventEl.tabIndex = 0;
+    eventEl.setAttribute("role", "button");
+    eventEl.setAttribute("aria-label", `${eventName}の詳細を表示`);
+
+    eventEl.addEventListener("click", openProject);
+
+    eventEl.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openProject();
+      }
+    });
+  });
 
   const scrollTargets = document.querySelectorAll(".scroll-fade");
 

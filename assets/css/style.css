@@ -1041,11 +1041,26 @@ section[id] {
   transition: transform 0.3s;
 }
 
+.project-img-wrap.image-unavailable,
+.modal-img-wrap.image-unavailable {
+  background: #ffffff0d;
+  border: 1px dashed #ffffff40;
+  border-radius: 6px;
+}
+
 .project-img-wrap.image-unavailable::after,
 .modal-img-wrap.image-unavailable::after {
-  content: "画像準備中";
-  color: #ffffff99;
-  font-size: 0.8rem;
+  content: "NO IMAGE";
+  color: #ffffffb3;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.modal-img-wrap.image-unavailable::after {
+  font-size: 1.6rem;
+  color: #ffffffcc;
 }
 
 .project-card:hover .project-img-wrap img {
@@ -1532,7 +1547,7 @@ section[id] {
   border-radius: 6px;
   padding: 4px 9px;
   display: flex;
-  align-items: flex-start;
+  align-items: baseline;
   line-height: 1.2;
   gap: 7px;
   overflow: hidden;
@@ -1541,10 +1556,22 @@ section[id] {
   transition: background-color 0.25s, transform 0.25s, z-index 0s;
 }
 
+.timetable-event:not([style*="height: 20px"]) {
+  padding-top: 8px;
+}
+
 .timetable-event:hover {
   background: #ffffff26;
   transform: translateY(-1px);
-  z-index: 3;
+}
+
+.timetable-event.is-clickable {
+  cursor: pointer;
+}
+
+.timetable-event.is-clickable:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 1px;
 }
 
 .timetable-event-time {
@@ -2224,7 +2251,7 @@ footer {
 
   .timetable-header-col,
   .timetable-column {
-    min-width: clamp(170px, 56vw, 220px);
+    min-width: clamp(220px, 64vw, 280px);
   }
 
   .timetable-axis-spacer,
@@ -2243,6 +2270,10 @@ footer {
 
   .timetable-event {
     padding: 1px 7px 3px;
+  }
+
+  .timetable-event:not([style*="height: 20px"]) {
+    padding-top: 6px;
   }
 
   .timetable-event-name {
@@ -2352,16 +2383,20 @@ footer {
 
 .ads-slide.image-unavailable {
   background: #ffffff0d;
-  border: 1px dashed #ffffff33;
+  border: 1px dashed #ffffff40;
+  border-radius: 12px;
   justify-content: center;
   align-items: center;
   display: flex;
 }
 
 .ads-slide.image-unavailable::after {
-  content: "画像準備中";
-  color: #ffffff99;
-  font-size: 0.85rem;
+  content: "NO IMAGE";
+  color: #ffffffb3;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
 .ads-slide:focus-visible {
