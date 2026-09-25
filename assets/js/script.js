@@ -603,6 +603,33 @@ const timetableEventProjectMap = {
   "バスケットボール部「バスケットボール部ob戦」": "バスケットボール部OB戦",
 };
 
+const LOCATION_ICON_SVG = `
+  <svg class="location-icon" viewBox="0 0 24 24" aria-hidden="true">
+    <path
+      fill="currentColor"
+      d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"
+    />
+  </svg>
+`;
+
+const venueColorMap = {
+  外ステージ: "hsl(356, 100%, 40%)",
+  体育館3階: "hsl(140, 90%, 33%)",
+  講堂: "hsl(215, 95%, 42%)",
+};
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, (char) => {
+    return {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;",
+    }[char];
+  });
+}
+
 function normalizeEventKey(value) {
   return String(value)
     .replace(/[\s\u3000]/g, "")
@@ -621,15 +648,7 @@ function getProjectIndexForEvent(eventName) {
   return index === undefined ? -1 : index;
 }
 
-function getEventColor(eventEl) {
-  const venue = getTimetableVenueFromEvent(eventEl);
-
-  const venueColorMap = {
-    外ステージ: "hsl(356, 100%, 40%)",
-    体育館3階: "hsl(140, 90%, 33%)",
-    講堂: "hsl(215, 95%, 42%)",
-  };
-
+function getEventColor(venue) {
   return venueColorMap[venue] || "#fff";
 }
 
@@ -646,91 +665,61 @@ function renderProjects() {
 
   const query = currentSearchQuery.trim().toLowerCase();
 
-  const filtered = projectsData
-    .map((item, index) => ({ item, index }))
-    .filter(({ item }) => {
-      const matchCategory =
-        currentCategory === "all" || item.category === currentCategory;
+  const filtered = [];
 
-      const matchSearch =
-        query === "" ||
-        item.title.toLowerCase().includes(query) ||
-        item.location.toLowerCase().includes(query) ||
-        item.description.toLowerCase().includes(query);
+  for (let i = 0; i < projectsData.length; i++) {
+    const item = projectsData[i];
 
-      return matchCategory && matchSearch;
-    });
+    const matchCategory =
+      currentCategory === "all" || item.category === currentCategory;
+
+    const matchSearch =
+      query === "" ||
+      item.title.toLowerCase().includes(query) ||
+      item.location.toLowerCase().includes(query) ||
+      item.description.toLowerCase().includes(query);
+
+    if (matchCategory && matchSearch) {
+      filtered.push({ item, index: i });
+    }
+  }
 
   if (els.count) {
     els.count.textContent = `該当する出展: ${filtered.length}件`;
   }
 
-  els.grid.replaceChildren();
-
   if (filtered.length === 0) {
-    const p = document.createElement("p");
-    p.className = "no-projects";
-    p.textContent = "該当する出展が見つかりませんでした。";
-    els.grid.appendChild(p);
+    els.grid.innerHTML =
+      '<p class="no-projects">該当する出展が見つかりませんでした。</p>';
     return;
   }
 
-  filtered.forEach(({ item, index }) => {
-    const article = document.createElement("article");
-    article.className = "project-card";
-    article.dataset.id = index;
-    article.tabIndex = 0;
-    article.setAttribute("role", "button");
-    article.setAttribute("aria-label", `${item.title}の詳細を表示`);
+  const html = filtered
+    .map(({ item, index }) => {
+      const chars = Array.from(item.description);
 
-    const imgWrap = document.createElement("div");
-    imgWrap.className = "project-img-wrap";
+      const desc =
+        chars.length > 30
+          ? chars.slice(0, 30).join("") + "..."
+          : item.description;
 
-    const img = document.createElement("img");
-    img.src = item.image;
-    img.alt = item.title;
-    img.loading = "lazy";
-    img.decoding = "async";
-    img.onerror = () => showImageUnavailable(imgWrap, img);
+      return `
+        <article class="project-card" data-id="${index}" tabindex="0" role="button"
+          aria-label="${escapeHTML(item.title)}の詳細を表示">
+          <div class="project-body">
+            <h3 class="project-title">${escapeHTML(item.title)}</h3>
+            <span class="project-location">${LOCATION_ICON_SVG}<span>${escapeHTML(item.location)}</span></span>
+            <p class="project-desc">${escapeHTML(desc)}</p>
+          </div>
+          <div class="project-img-wrap">
+            <img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.title)}" loading="lazy" decoding="async" />
+          </div>
+        </article>
+      `;
+    })
+    .join("");
 
-    imgWrap.appendChild(img);
-
-    const body = document.createElement("div");
-    body.className = "project-body";
-
-    const title = document.createElement("h3");
-    title.className = "project-title";
-    title.textContent = item.title;
-
-    const location = document.createElement("span");
-    location.className = "project-location";
-
-    location.innerHTML = `
-      <svg class="location-icon" viewBox="0 0 24 24" aria-hidden="true">
-        <path
-          fill="currentColor"
-          d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"
-        />
-      </svg>
-      <span>${item.location}</span>
-    `;
-
-    const desc = document.createElement("p");
-    desc.className = "project-desc";
-
-    const chars = Array.from(item.description);
-
-    desc.textContent =
-      chars.length > 30
-        ? chars.slice(0, 30).join("") + "..."
-        : item.description;
-
-    body.append(title, location, desc);
-
-    article.append(body, imgWrap);
-
-    els.grid.appendChild(article);
-  });
+  els.grid.innerHTML = html;
 }
 
 let adsCurrentIndex = 0;
@@ -738,54 +727,35 @@ let adsAutoplayTimer = null;
 let adsSlides = [];
 
 function renderAdsSlider() {
-  const track = document.getElementById("js-ads-track");
+  const track = els.adsTrack;
 
   if (!track || adsData.length === 0) return;
 
-  track.replaceChildren();
+  track.innerHTML = adsData
+    .map((ad, i) => {
+      const projectIndex = projectIndexByTitle.get(ad.projectTitle) ?? -1;
 
-  adsData.forEach((ad, i) => {
-    const projectIndex = projectIndexByTitle.get(ad.projectTitle) ?? -1;
-
-    const slide = document.createElement("button");
-    slide.type = "button";
-    slide.className = "ads-slide";
-
-    slide.setAttribute(
-      "aria-label",
-      ad.noModal
+      const label = ad.noModal
         ? `広告: ${ad.projectTitle}`
-        : `広告: ${ad.projectTitle}の詳細を見る`
-    );
+        : `広告: ${ad.projectTitle}の詳細を見る`;
 
-    const img = document.createElement("img");
-    img.src = ad.image;
-    img.alt = ad.projectTitle;
-    img.loading = i === 0 ? "eager" : "lazy";
-    img.decoding = "async";
+      return `
+        <button type="button" class="ads-slide"
+          data-project-index="${projectIndex}"
+          ${ad.noModal ? 'data-no-modal="true"' : ""}
+          aria-label="${escapeHTML(label)}">
+          <img src="${escapeHTML(ad.image)}" alt="${escapeHTML(ad.projectTitle)}"
+            loading="${i === 0 ? "eager" : "lazy"}" decoding="async" />
+        </button>
+      `;
+    })
+    .join("");
 
-    img.onerror = () => showImageUnavailable(slide, img);
-
-    slide.appendChild(img);
-
-    if (!ad.noModal) {
-      slide.addEventListener("click", () => {
-        if (projectIndex >= 0) {
-          openProjectModal(projectIndex);
-        }
-      });
-    }
-
-    track.appendChild(slide);
-  });
-
-  const total = document.getElementById("js-ads-counter-total");
-
-  if (total) {
-    total.textContent = adsData.length;
+  if (els.adsTotal) {
+    els.adsTotal.textContent = adsData.length;
   }
 
-  adsSlides = Array.from(track.querySelectorAll(".ads-slide"));
+  adsSlides = Array.from(track.children);
 
   goToAdSlide(0);
   startAdsAutoplay();
@@ -820,10 +790,8 @@ function goToAdSlide(index) {
     }
   });
 
-  const now = document.getElementById("js-ads-counter-now");
-
-  if (now) {
-    now.textContent = String(adsCurrentIndex + 1).padStart(2, "0");
+  if (els.adsNow) {
+    els.adsNow.textContent = String(adsCurrentIndex + 1).padStart(2, "0");
   }
 }
 
@@ -840,7 +808,7 @@ function restartAdsAutoplay() {
 }
 
 function startAdsAutoplay() {
-  const slider = document.getElementById("js-ads-slider");
+  const slider = els.adsSlider;
 
   if (!slider || adsData.length <= 1) return;
 
@@ -858,17 +826,14 @@ function startAdsAutoplay() {
     slider.dataset.adsBound = "true";
 
     slider.addEventListener("mouseenter", stopAdsAutoplay);
-
     slider.addEventListener("mouseleave", startAdsAutoplay);
-
     slider.addEventListener("focusin", stopAdsAutoplay);
-
     slider.addEventListener("focusout", startAdsAutoplay);
   }
 }
 
 function initAdsSwipe() {
-  const slider = document.getElementById("js-ads-slider");
+  const slider = els.adsSlider;
 
   if (!slider || adsData.length <= 1) return;
 
@@ -969,64 +934,6 @@ function trapFocus(event, container) {
   }
 }
 
-function openProjectModal(index, venue) {
-  const item = projectsData[index];
-
-  if (!item || !els.modalOverlay || !els.modalBody) {
-    return;
-  }
-
-  els.modalBody.replaceChildren();
-
-  const wrap = document.createElement("div");
-  wrap.className = "modal-img-wrap";
-
-  const img = document.createElement("img");
-  img.src = item.image;
-  img.alt = item.title;
-  img.decoding = "async";
-
-  img.onerror = () => showImageUnavailable(wrap, img);
-
-  wrap.appendChild(img);
-
-  const location = document.createElement("span");
-  location.className = "modal-location";
-
-  location.innerHTML = `
-    <svg class="location-icon" viewBox="0 0 24 24" aria-hidden="true">
-      <path
-        fill="currentColor"
-        d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"
-      />
-    </svg>
-    <span>${getTimetableVenueName(venue || item.location)}</span>
-  `;
-
-  const title = document.createElement("h3");
-
-  title.className = "modal-title";
-  title.id = "js-modal-title";
-  title.textContent = item.title;
-
-  const desc = document.createElement("p");
-
-  desc.className = "modal-desc";
-  desc.textContent = item.description;
-
-  els.modalBody.append(wrap, location, title, desc);
-
-  lastFocusedElement = document.activeElement;
-
-  els.modalOverlay.classList.add("is-active");
-
-  els.modalOverlay.setAttribute("aria-hidden", "false");
-
-  updateScrollLock();
-
-  els.modalCloseBtn?.focus();
-}
-
 function getTimetableVenueName(location) {
   const venueMap = {
     外ステージ: "外ステージ",
@@ -1050,13 +957,45 @@ function getTimetableVenueFromEvent(eventEl) {
   );
 }
 
+function openModal() {
+  lastFocusedElement = document.activeElement;
+
+  els.modalOverlay.classList.add("is-active");
+  els.modalOverlay.setAttribute("aria-hidden", "false");
+
+  updateScrollLock();
+
+  els.modalCloseBtn?.focus();
+}
+
+function openProjectModal(index, venue) {
+  const item = projectsData[index];
+
+  if (!item || !els.modalOverlay || !els.modalBody) {
+    return;
+  }
+
+  const locationName = getTimetableVenueName(venue || item.location);
+
+  els.modalBody.innerHTML = `
+    <div class="modal-img-wrap">
+      <img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.title)}" decoding="async" />
+    </div>
+    <span class="modal-location">${LOCATION_ICON_SVG}<span>${escapeHTML(locationName)}</span></span>
+    <h3 class="modal-title" id="js-modal-title">${escapeHTML(item.title)}</h3>
+    <p class="modal-desc">${escapeHTML(item.description)}</p>
+  `;
+
+  openModal();
+}
+
 function openTimetableFallbackModal(eventEl) {
   if (!els.modalOverlay || !els.modalBody) return;
 
   const location = getTimetableVenueFromEvent(eventEl);
 
-  const nameEl = eventEl.querySelector(".timetable-event-name");
-  const eventName = nameEl?.textContent?.trim() || "";
+  const eventName =
+    eventEl.querySelector(".timetable-event-name")?.textContent?.trim() || "";
 
   const titleText = String(eventEl.title || "");
 
@@ -1066,57 +1005,24 @@ function openTimetableFallbackModal(eventEl) {
     ? `${timeMatch[1]}～${timeMatch[2]}`
     : (eventEl.querySelector(".timetable-event-time")?.textContent?.trim() || "");
 
-  els.modalBody.replaceChildren();
+  const descHTML = timeRange
+    ? `<p class="modal-desc">開催時間: ${escapeHTML(timeRange)}</p>`
+    : "";
 
-  const wrap = document.createElement("div");
-  wrap.className = "modal-img-wrap image-unavailable";
-
-  const locationEl = document.createElement("span");
-  locationEl.className = "modal-location";
-
-  locationEl.innerHTML = `
-    <svg class="location-icon" viewBox="0 0 24 24" aria-hidden="true">
-      <path
-        fill="currentColor"
-        d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"
-      />
-    </svg>
-    <span>${location}</span>
+  els.modalBody.innerHTML = `
+    <div class="modal-img-wrap image-unavailable"></div>
+    <span class="modal-location">${LOCATION_ICON_SVG}<span>${escapeHTML(location)}</span></span>
+    <h3 class="modal-title" id="js-modal-title">${escapeHTML(eventName)}</h3>
+    ${descHTML}
   `;
 
-  const title = document.createElement("h3");
-
-  title.className = "modal-title";
-  title.id = "js-modal-title";
-  title.textContent = eventName;
-
-  const desc = document.createElement("p");
-
-  desc.className = "modal-desc";
-
-  if (timeRange) {
-    desc.textContent = `開催時間: ${timeRange}`;
-    els.modalBody.append(wrap, locationEl, title, desc);
-  } else {
-    els.modalBody.append(wrap, locationEl, title);
-  }
-
-  lastFocusedElement = document.activeElement;
-
-  els.modalOverlay.classList.add("is-active");
-
-  els.modalOverlay.setAttribute("aria-hidden", "false");
-
-  updateScrollLock();
-
-  els.modalCloseBtn?.focus();
+  openModal();
 }
 
 function closeProjectModal() {
   if (!els.modalOverlay) return;
 
   els.modalOverlay.classList.remove("is-active");
-
   els.modalOverlay.setAttribute("aria-hidden", "true");
 
   updateScrollLock();
@@ -1131,31 +1037,43 @@ function closeProjectModal() {
 document.addEventListener("DOMContentLoaded", () => {
   els = {
     grid: document.getElementById("js-project-grid"),
-
     count: document.getElementById("js-project-count"),
-
     modalOverlay: document.getElementById("js-modal-overlay"),
-
     modalBody: document.getElementById("js-modal-body"),
-
     modalCloseBtn: document.getElementById("js-modal-close"),
-
     header: document.querySelector("header"),
-
     backToTop: document.getElementById("back-to-top"),
-
     searchInput: document.getElementById("js-search-input"),
-
     openBtn: document.getElementById("js-hamburger-open"),
-
     closeBtn: document.getElementById("js-hamburger-close"),
-
     mobileMenu: document.getElementById("js-mobile-menu"),
-
     menuOverlay: document.getElementById("js-menu-overlay"),
-
     modalContent: document.querySelector(".modal-content"),
+    adsTrack: document.getElementById("js-ads-track"),
+    adsSlider: document.getElementById("js-ads-slider"),
+    adsNow: document.getElementById("js-ads-counter-now"),
+    adsTotal: document.getElementById("js-ads-counter-total"),
+    adsPrev: document.getElementById("js-ads-prev"),
+    adsNext: document.getElementById("js-ads-next"),
   };
+
+  document.addEventListener(
+    "error",
+    (e) => {
+      const img = e.target;
+
+      if (!img || img.tagName !== "IMG") return;
+
+      const wrap = img.closest(
+        ".project-img-wrap, .ads-slide, .modal-img-wrap"
+      );
+
+      if (wrap) {
+        showImageUnavailable(wrap, img);
+      }
+    },
+    true
+  );
 
   const updateScrollUi = () => {
     const scrollY = window.scrollY;
@@ -1214,12 +1132,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const activateTab = (tab) => {
       congestionTabs.forEach((t) => {
         t.classList.remove("is-active");
-
         t.setAttribute("aria-selected", "false");
       });
 
       tab.classList.add("is-active");
-
       tab.setAttribute("aria-selected", "true");
 
       const slideId = tab.dataset.slide;
@@ -1258,12 +1174,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const activateDay = (tab) => {
       timetableTabs.forEach((t) => {
         t.classList.remove("is-active");
-
         t.setAttribute("aria-selected", "false");
       });
 
       tab.classList.add("is-active");
-
       tab.setAttribute("aria-selected", "true");
 
       const day = tab.dataset.day;
@@ -1287,49 +1201,31 @@ document.addEventListener("DOMContentLoaded", () => {
   const timetableEvents = document.querySelectorAll(".timetable-event");
 
   timetableEvents.forEach((eventEl) => {
-    const nameEl = eventEl.querySelector(".timetable-event-name");
-
-    const eventName = nameEl?.textContent.trim() || "";
-
-    eventEl.style.setProperty("--tt-event-color", getEventColor(eventEl));
-
-    const projectIndex = getProjectIndexForEvent(eventName);
-
-    if (projectIndex < 0) {
-      eventEl.classList.add("is-clickable");
-      eventEl.tabIndex = 0;
-      eventEl.setAttribute("role", "button");
-      eventEl.setAttribute("aria-label", `${eventName}の詳細を表示`);
-
-      const openFallback = () => openTimetableFallbackModal(eventEl);
-
-      eventEl.addEventListener("click", openFallback);
-
-      eventEl.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          openFallback();
-        }
-      });
-
-      return;
-    }
+    const eventName =
+      eventEl.querySelector(".timetable-event-name")?.textContent.trim() || "";
 
     const venue = getTimetableVenueFromEvent(eventEl);
 
-    const openProject = () => openProjectModal(projectIndex, venue);
+    eventEl.style.setProperty("--tt-event-color", getEventColor(venue));
+
+    const projectIndex = getProjectIndexForEvent(eventName);
+
+    const openModalFn =
+      projectIndex < 0
+        ? () => openTimetableFallbackModal(eventEl)
+        : () => openProjectModal(projectIndex, venue);
 
     eventEl.classList.add("is-clickable");
     eventEl.tabIndex = 0;
     eventEl.setAttribute("role", "button");
     eventEl.setAttribute("aria-label", `${eventName}の詳細を表示`);
 
-    eventEl.addEventListener("click", openProject);
+    eventEl.addEventListener("click", openModalFn);
 
     eventEl.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        openProject();
+        openModalFn();
       }
     });
   });
@@ -1342,7 +1238,6 @@ document.addEventListener("DOMContentLoaded", () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("is-show");
-
             observer.unobserve(entry.target);
           }
         });
@@ -1367,9 +1262,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     els.mobileMenu?.setAttribute("aria-hidden", "false");
-
     els.mobileMenu?.removeAttribute("inert");
-
     els.openBtn?.setAttribute("aria-expanded", "true");
 
     updateScrollLock();
@@ -1387,9 +1280,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     els.mobileMenu?.setAttribute("aria-hidden", "true");
-
     els.mobileMenu?.setAttribute("inert", "");
-
     els.openBtn?.setAttribute("aria-expanded", "false");
 
     updateScrollLock();
@@ -1399,7 +1290,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (els.openBtn && els.closeBtn && els.mobileMenu) {
     els.openBtn.addEventListener("click", openMenu);
-
     els.closeBtn.addEventListener("click", closeMenu);
 
     if (els.menuOverlay) {
@@ -1495,11 +1385,9 @@ document.addEventListener("DOMContentLoaded", () => {
   categoryBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
       categoryBtns.forEach((b) => b.classList.remove("active"));
-
       categoryBtns.forEach((b) => b.setAttribute("aria-pressed", "false"));
 
       btn.classList.add("active");
-
       btn.setAttribute("aria-pressed", "true");
 
       currentCategory = btn.dataset.filter;
@@ -1520,22 +1408,30 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  const adsPrev = document.getElementById("js-ads-prev");
+  if (els.adsTrack) {
+    els.adsTrack.addEventListener("click", (e) => {
+      const slide = e.target.closest(".ads-slide");
 
-  const adsNext = document.getElementById("js-ads-next");
+      if (!slide || slide.dataset.noModal === "true") return;
 
-  if (adsPrev) {
-    adsPrev.addEventListener("click", () => {
+      const projectIndex = Number(slide.dataset.projectIndex);
+
+      if (projectIndex >= 0) {
+        openProjectModal(projectIndex);
+      }
+    });
+  }
+
+  if (els.adsPrev) {
+    els.adsPrev.addEventListener("click", () => {
       goToAdSlide(adsCurrentIndex - 1);
-
       restartAdsAutoplay();
     });
   }
 
-  if (adsNext) {
-    adsNext.addEventListener("click", () => {
+  if (els.adsNext) {
+    els.adsNext.addEventListener("click", () => {
       goToAdSlide(adsCurrentIndex + 1);
-
       restartAdsAutoplay();
     });
   }
@@ -1544,10 +1440,8 @@ document.addEventListener("DOMContentLoaded", () => {
   renderAdsSlider();
   initAdsSwipe();
 
-  const adsSliderEl = document.getElementById("js-ads-slider");
-
-  if (adsSliderEl && adsData.length > 1 && "IntersectionObserver" in window) {
-    let adsHasStarted = adsSliderEl.dataset.adsStarted === "true";
+  if (els.adsSlider && adsData.length > 1 && "IntersectionObserver" in window) {
+    let adsHasStarted = els.adsSlider.dataset.adsStarted === "true";
 
     const adsObserver = new IntersectionObserver(
       (entries) => {
@@ -1556,7 +1450,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!adsHasStarted) {
               adsHasStarted = true;
 
-              adsSliderEl.dataset.adsStarted = "true";
+              els.adsSlider.dataset.adsStarted = "true";
 
               goToAdSlide(0);
             }
@@ -1572,6 +1466,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     );
 
-    adsObserver.observe(adsSliderEl);
+    adsObserver.observe(els.adsSlider);
   }
 });
