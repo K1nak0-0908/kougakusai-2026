@@ -57,7 +57,7 @@ const projectsData = [
   },
   {
     title: "まぁ、メイドカフェ",
-    location: "中3A組（324教室）",
+    location: "324教室",
     description:
       "沖縄のかわいい人魚たちがメイドになって、沖縄と言えばのお菓子や飲み物でお客様をおもてなしします！",
     category: "c3",
@@ -73,7 +73,7 @@ const projectsData = [
   },
   {
     title: "中学3年エイサー",
-    location: "中3B組（322教室）",
+    location: "322教室",
     description:
       "中学三年生の生徒によるエイサーです。昼のステージや後夜祭などでも披露します。ぜひご覧ください！",
     category: "c3",
@@ -81,7 +81,7 @@ const projectsData = [
   },
   {
     title: "中三線〜ちゅらいぶ〜",
-    location: "中3C組（322教室）",
+    location: "322教室",
     description:
       "今年の中3の三線では、伝統的な民謡から人気の沖縄ソングまで3曲を披露します。教室に南国の風を吹かせます！ぜひ321教室にめんそーれ！",
     category: "c3",
@@ -89,14 +89,14 @@ const projectsData = [
   },
   {
     title: "タカナワンチュ展",
-    location: "中3D組（321教室）",
+    location: "321教室",
     description: "沖縄を題材とした装飾や展示を廊下や教室内で行います。",
     category: "c3",
     image: "./assets/images/projects/grade/c3/c3-03.webp",
   },
   {
     title: "琉球ハリケーン",
-    location: "中3E組（325教室）",
+    location: "325教室",
     description:
       "琉球をコンセプトにした完全人力のコーヒーカップです！僕たちの全力パワーが巻き起こす、スリルの渦をぜひ体験しにきてください。",
     category: "c3",
@@ -104,7 +104,7 @@ const projectsData = [
   },
   {
     title: "天空の首里ちゅらピュタ",
-    location: "中3F組（323教室）",
+    location: "323教室",
     description:
       "沖縄に転校してきた波津夫が空から降ってきた不思議な少女しーこと共に、天空のちゅらピュタにあるという首里グスクを探すのだが･･･。",
     category: "c3",
@@ -112,7 +112,7 @@ const projectsData = [
   },
   {
     title: "メイド喫茶・LOVE注入 ～ Love Injection ～",
-    location: "高1A組（308教室）",
+    location: "308教室",
     description:
       "高1の益荒男たちが心を込めてお出迎え。 ご主人様、お嬢様のお帰りをお待ちしております💗",
     category: "h1",
@@ -127,7 +127,7 @@ const projectsData = [
   },
   {
     title: "TAKANAWA SONIC 2026",
-    location: "高1B組（307教室）",
+    location: "307教室",
     description:
       "TAKANAWA SONIC が2年ぶりに復刻！前回でも大人気だった出展です！高一学年が送るパフォーマンスをぜひご覧ください！",
     category: "h1",
@@ -135,7 +135,7 @@ const projectsData = [
   },
   {
     title: "禍 ー変な屋敷ー",
-    location: "高1C組（301・302教室）",
+    location: "301・302教室",
     description:
       "生者と死者の境が曖昧なこの季節。妖怪が出ると噂の屋敷で肝試しを開催！禍々し過ぎる和風ホラー、一度訪れてみませんか…？",
     category: "h1",
@@ -143,7 +143,7 @@ const projectsData = [
   },
   {
     title: "GALAXY MISSION ～暗黒宙域の制覇～",
-    location: "高1D組（303教室）",
+    location: "303教室",
     description:
       "宇宙を舞台に戦闘機に乗って様々な敵を撃ち倒すシューティングゲームです。暗い宇宙への没入感や、世界観が魅力的です。一緒に敵を倒しましょう！",
     category: "h1",
@@ -151,7 +151,7 @@ const projectsData = [
   },
   {
     title: "縁日でハピハピ",
-    location: "高1E組（304教室前方コモンスペース）",
+    location: "304教室前方コモンスペース",
     description:
       "縁日気分を満喫できる楽しい企画を用意しています！友達やご家族と一緒に、ぜひお気軽にお立ち寄りください！",
     category: "h1",
@@ -159,7 +159,7 @@ const projectsData = [
   },
   {
     title: "賭輪グルイ",
-    location: "高2A組（421教室）",
+    location: "421教室",
     description:
       "運と戦略で勝利をつかめ！チップを賭けて楽しむカジノ体験型カフェ『賭輪グルイ』",
     category: "h2",
@@ -175,7 +175,7 @@ const projectsData = [
   },
   {
     title: "港区男子",
-    location: "高2B組（403教室）",
+    location: "403教室",
     description:
       "ダンスだけじゃ終わらない！歌や演出も交えた熱いステージ。最高のパフォーマンスで、会場を全力で盛り上げます！",
     category: "h2",
@@ -183,7 +183,7 @@ const projectsData = [
   },
   {
     title: "Don't touch MANsion",
-    location: "高2C組（401・402教室）",
+    location: "401・402教室",
     description:
       "鬼頭亭から1年…高校2年生の集大成を、2教室分の絶望と恐怖を、さあDon't touch MANsionへようこそ",
     category: "h2",
@@ -191,7 +191,7 @@ const projectsData = [
   },
   {
     title: "Mine Coaster",
-    location: "高2D組（404教室）",
+    location: "404教室",
     description:
       "昨年度も好評のロマン溢れるジェットコースター 今年は、「鉱山」がモチーフです！ 校内最高最速を自負してます！ 是非来てください!",
     category: "h2",
@@ -199,7 +199,7 @@ const projectsData = [
   },
   {
     title: "12の怒れる男たち",
-    location: "高2E組（422教室）",
+    location: "422教室",
     description:
       "12人の男が殺人事件の容疑者である1人の黒人少年の無罪を巡って争う!?検察の証拠には合理的疑問があるか!?",
     category: "h2",
