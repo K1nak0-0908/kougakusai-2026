@@ -79,6 +79,10 @@ header.scrolled {
 .hero {
   z-index: 0;
   background-image: url(../images/background.webp);
+  background-image: image-set(
+    url(../images/background.avif) type("image/avif"),
+    url(../images/background.webp) type("image/webp")
+  );
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
