@@ -1128,10 +1128,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const congestionTabs = document.querySelectorAll(".congestion-tab");
 
-  const congestionFrame = document.getElementById("js-congestion-frame");
+  const congestionSlides = document.querySelectorAll(".congestion-slide");
 
-  if (congestionTabs.length && congestionFrame) {
-    const loadedSlides = new Set();
+  if (congestionTabs.length && congestionSlides.length) {
+    const loadSlideFrame = (frame) => {
+      if (frame.dataset.slideLoaded) {
+        return;
+      }
+
+      frame.dataset.slideLoaded = "true";
+
+      frame.src = CONGESTION_EMBED_BASE + frame.dataset.slideFrame;
+    };
 
     const activateTab = (tab) => {
       congestionTabs.forEach((t) => {
@@ -1146,9 +1154,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!slideId) return;
 
-      loadedSlides.add(slideId);
+      congestionSlides.forEach((frame) => {
+        const isActive = frame.dataset.slideFrame === slideId;
 
-      congestionFrame.src = CONGESTION_EMBED_BASE + slideId;
+        frame.classList.toggle("is-active", isActive);
+
+        if (isActive) {
+          loadSlideFrame(frame);
+        }
+      });
     };
 
     congestionTabs.forEach((tab) => {
@@ -1163,10 +1177,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const initialTab = document.querySelector(".congestion-tab.is-active");
 
-    if (initialTab?.dataset.slide) {
-      loadedSlides.add(initialTab.dataset.slide);
-
-      congestionFrame.src = CONGESTION_EMBED_BASE + initialTab.dataset.slide;
+    if (initialTab) {
+      activateTab(initialTab);
     }
   }
 
