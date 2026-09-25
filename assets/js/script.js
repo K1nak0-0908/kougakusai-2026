@@ -999,10 +999,14 @@ function openTimetableFallbackModal(eventEl) {
 
   const titleText = String(eventEl.title || "");
 
-  const timeMatch = titleText.match(/^\s*(\d{1,2}:\d{2})-(\d{1,2}:\d{2})/);
+  const timeMatch = titleText.match(
+    /^\s*(\d{1,2}:\d{2})(?:\s*[-～]\s*(\d{1,2}:\d{2}))?/
+  );
 
   const timeRange = timeMatch
-    ? `${timeMatch[1]}～${timeMatch[2]}`
+    ? timeMatch[2]
+      ? `${timeMatch[1]}～${timeMatch[2]}`
+      : `${timeMatch[1]}～`
     : (eventEl.querySelector(".timetable-event-time")?.textContent?.trim() || "");
 
   const descHTML = timeRange

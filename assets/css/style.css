@@ -19,7 +19,7 @@ header {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 18px 40px;
+  padding: max(18px, env(safe-area-inset-top, 0px)) 40px;
   font-family: Shippori Mincho, serif;
   font-weight: 800;
   transition: background-color 0.4s, backdrop-filter 0.4s;
@@ -1785,7 +1785,7 @@ footer {
   transition: opacity 0.3s, background-color 0.3s, color 0.3s, visibility 0.3s;
   display: flex;
   position: fixed;
-  bottom: 24px;
+bottom: max(24px, env(safe-area-inset-bottom, 0px));
   right: 24px;
 }
 
@@ -2044,7 +2044,7 @@ footer {
     height: 40px;
     display: flex;
     position: absolute;
-    top: 20px;
+    top: max(20px, env(safe-area-inset-top, 0px));
     right: 20px;
   }
 
