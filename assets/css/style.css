@@ -412,6 +412,7 @@ section[id] {
   scroll-margin-top: 90px;
 }
 
+.grand-prix::before,
 .about::before {
   content: "";
   z-index: 0;
@@ -718,32 +719,19 @@ section[id] {
   height: 14px;
 }
 
-[data-section="grand-prix"] .pos-1 {
-  top: 62px;
-  left: clamp(20px, 5vw, 88px);
-}
-
-[data-section="grand-prix"] .pos-2 {
-  bottom: 112px;
-  right: calc(clamp(20px, 5vw, 88px) + 96px);
-  transform: rotate(-24deg);
-}
-
-[data-section="grand-prix"] .pos-3 {
-  top: 34%;
-  left: 12%;
-}
-
+[data-section="grand-prix"] .pos-1,
 [data-section="about"] .pos-1 {
   right: clamp(20px, 5vw, 88px);
   bottom: 56px;
 }
 
+[data-section="grand-prix"] .pos-2,
 [data-section="about"] .pos-2 {
   top: 26%;
   left: 16%;
 }
 
+[data-section="grand-prix"] .pos-3,
 [data-section="about"] .pos-3 {
   top: 46%;
   right: 15%;
@@ -828,7 +816,8 @@ section[id] {
   transform: translateY(0);
 }
 
-.about:after {
+.grand-prix::after,
+.about::after {
   content: "";
   pointer-events: none;
   background: linear-gradient(#0000, #080808);
@@ -839,7 +828,8 @@ section[id] {
   left: 0;
 }
 
-.about-text {
+.about-text,
+.grand-prix-text {
   text-align: center;
   max-width: 860px;
   margin: 0 auto;
@@ -863,7 +853,8 @@ section[id] {
   height: 5.5rem;
 }
 
-.about p {
+.about p,
+.grand-prix-apology {
   color: #f0f0f0;
   letter-spacing: 0.04em;
   text-align: left;
@@ -1276,53 +1267,6 @@ section[id] {
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.8;
-}
-
-.grand-prix::before {
-  content: "";
-  z-index: 0;
-  pointer-events: none;
-  width: 88px;
-  height: 88px;
-  border: 1.5px solid rgb(255 255 255 / 0.12);
-  border-top-color: rgb(255 255 255 / 0.26);
-  border-radius: 14px;
-  position: absolute;
-  top: 116px;
-  right: clamp(20px, 5vw, 88px);
-  transform: rotate(14deg);
-}
-
-.grand-prix::after {
-  content: "";
-  z-index: 0;
-  pointer-events: none;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: rgb(255 255 255 / 0.28);
-  box-shadow: 30px 24px 0 -1px rgb(255 255 255 / 0.16),
-    58px 10px 0 -1px rgb(255 255 255 / 0.1);
-  position: absolute;
-  bottom: 76px;
-  left: clamp(20px, 5vw, 88px);
-}
-
-.grand-prix-inner {
-  text-align: center;
-}
-
-.grand-prix-text {
-  max-width: 760px;
-  margin: 0 auto;
-}
-
-.grand-prix-apology {
-  color: #f0f0f0;
-  letter-spacing: 0.04em;
-  font-size: 1.1rem;
-  font-weight: 500;
-  line-height: 2.1;
 }
 
 .grand-prix-form-btn {
@@ -1917,24 +1861,11 @@ bottom: max(24px, env(safe-area-inset-bottom, 0px));
   .access::before,
   .precautions::before,
   .congestion::after,
-  .grand-prix::after,
   .projects::after,
   .access::after,
   .precautions::after,
   .section-deco {
     opacity: 0.45;
-  }
-
-  .grand-prix::before {
-    width: 64px;
-    height: 64px;
-    top: 118px;
-    right: -12px;
-  }
-
-  .grand-prix::after {
-    bottom: 60px;
-    left: 16px;
   }
 
   .congestion::before {
@@ -1988,6 +1919,7 @@ bottom: max(24px, env(safe-area-inset-bottom, 0px));
     left: 16px;
   }
 
+  .grand-prix::before,
   .about::before {
     width: 64px;
     height: 64px;
@@ -2198,7 +2130,8 @@ bottom: max(24px, env(safe-area-inset-bottom, 0px));
     height: 4rem;
   }
 
-  .about p {
+  .about p,
+  .grand-prix-apology {
     font-size: 1.05rem;
   }
 
@@ -2210,11 +2143,6 @@ bottom: max(24px, env(safe-area-inset-bottom, 0px));
   .timetable h2 {
     font-size: 2.5rem;
     margin-bottom: 24px;
-  }
-
-  .grand-prix-apology {
-    font-size: 1rem;
-    line-height: 2;
   }
 
   .grand-prix-form-btn {
