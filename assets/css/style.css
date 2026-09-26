@@ -718,6 +718,22 @@ section[id] {
   height: 14px;
 }
 
+[data-section="grand-prix"] .pos-1 {
+  top: 62px;
+  left: clamp(20px, 5vw, 88px);
+}
+
+[data-section="grand-prix"] .pos-2 {
+  bottom: 112px;
+  right: calc(clamp(20px, 5vw, 88px) + 96px);
+  transform: rotate(-24deg);
+}
+
+[data-section="grand-prix"] .pos-3 {
+  top: 34%;
+  left: 12%;
+}
+
 [data-section="about"] .pos-1 {
   right: clamp(20px, 5vw, 88px);
   bottom: 56px;
@@ -855,6 +871,7 @@ section[id] {
   line-height: 2.1;
 }
 
+.grand-prix h2,
 .projects h2,
 .congestion h2,
 .access h2,
@@ -868,6 +885,7 @@ section[id] {
   font-size: 2.8rem;
 }
 
+.grand-prix h2:after,
 .projects h2:after,
 .congestion h2:after,
 .access h2:after,
@@ -1258,6 +1276,62 @@ section[id] {
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.8;
+}
+
+.grand-prix::before {
+  content: "";
+  z-index: 0;
+  pointer-events: none;
+  width: 88px;
+  height: 88px;
+  border: 1.5px solid rgb(255 255 255 / 0.12);
+  border-top-color: rgb(255 255 255 / 0.26);
+  border-radius: 14px;
+  position: absolute;
+  top: 116px;
+  right: clamp(20px, 5vw, 88px);
+  transform: rotate(14deg);
+}
+
+.grand-prix::after {
+  content: "";
+  z-index: 0;
+  pointer-events: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 0.28);
+  box-shadow: 30px 24px 0 -1px rgb(255 255 255 / 0.16),
+    58px 10px 0 -1px rgb(255 255 255 / 0.1);
+  position: absolute;
+  bottom: 76px;
+  left: clamp(20px, 5vw, 88px);
+}
+
+.grand-prix-inner {
+  text-align: center;
+}
+
+.grand-prix-text {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.grand-prix-apology {
+  color: #f0f0f0;
+  letter-spacing: 0.04em;
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 2.1;
+}
+
+.grand-prix-form-btn {
+  margin-top: 38px;
+}
+
+.grand-prix-form-btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
 }
 
 .projects-link-container {
@@ -1836,17 +1910,31 @@ bottom: max(24px, env(safe-area-inset-bottom, 0px));
     scroll-margin-top: 88px;
   }
 
+  .grand-prix::before,
   .about::before,
   .congestion::before,
   .projects::before,
   .access::before,
   .precautions::before,
   .congestion::after,
+  .grand-prix::after,
   .projects::after,
   .access::after,
   .precautions::after,
   .section-deco {
     opacity: 0.45;
+  }
+
+  .grand-prix::before {
+    width: 64px;
+    height: 64px;
+    top: 118px;
+    right: -12px;
+  }
+
+  .grand-prix::after {
+    bottom: 60px;
+    left: 16px;
   }
 
   .congestion::before {
@@ -2114,6 +2202,7 @@ bottom: max(24px, env(safe-area-inset-bottom, 0px));
     font-size: 1.05rem;
   }
 
+  .grand-prix h2,
   .projects h2,
   .congestion h2,
   .access h2,
@@ -2121,6 +2210,16 @@ bottom: max(24px, env(safe-area-inset-bottom, 0px));
   .timetable h2 {
     font-size: 2.5rem;
     margin-bottom: 24px;
+  }
+
+  .grand-prix-apology {
+    font-size: 1rem;
+    line-height: 2;
+  }
+
+  .grand-prix-form-btn {
+    width: 100%;
+    margin-top: 32px;
   }
 
   .congestion-desc {
