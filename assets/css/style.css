@@ -774,6 +774,17 @@ section[id] {
   left: clamp(20px, 5vw, 88px);
 }
 
+[data-section="pamphlet"] .pos-1 {
+  top: 34%;
+  right: clamp(20px, 5vw, 88px);
+  transform: rotate(180deg);
+}
+
+[data-section="pamphlet"] .pos-2 {
+  bottom: 88px;
+  left: clamp(20px, 5vw, 88px);
+}
+
 [data-section="access"] .pos-1 {
   bottom: 126px;
   left: calc(clamp(20px, 5vw, 88px) + 26px);
@@ -867,7 +878,8 @@ section[id] {
 .congestion h2,
 .access h2,
 .precautions h2,
-.timetable h2 {
+.timetable h2,
+.pamphlet h2 {
   letter-spacing: 0.08em;
   text-align: center;
   color: #fff;
@@ -881,7 +893,8 @@ section[id] {
 .congestion h2:after,
 .access h2:after,
 .precautions h2:after,
-.timetable h2:after {
+.timetable h2:after,
+.pamphlet h2:after {
   content: "";
   background: #fff;
   width: 50px;
@@ -1315,6 +1328,15 @@ section[id] {
   background-color: #fff;
   color: #080808;
   border-color: #fff;
+}
+
+.pamphlet-note {
+  max-width: 90%;
+  margin-top: 20px;
+  color: #ffffff59;
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.7;
 }
 
 .congestion-desc {
@@ -2140,7 +2162,8 @@ bottom: max(24px, env(safe-area-inset-bottom, 0px));
   .congestion h2,
   .access h2,
   .precautions h2,
-  .timetable h2 {
+  .timetable h2,
+  .pamphlet h2 {
     font-size: 2.5rem;
     margin-bottom: 24px;
   }
