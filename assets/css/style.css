@@ -2148,14 +2148,14 @@ bottom: max(24px, env(safe-area-inset-bottom, 0px));
 
   .hero-closed-title {
     gap: 10px;
-    font-size: 1.45rem;
+    font-size: 1.25rem;
     letter-spacing: 0.1em;
     text-indent: 0.1em;
   }
 
   .hero-thanks {
     margin-top: 12px;
-    font-size: 1.15rem;
+    font-size: 1rem;
     letter-spacing: 0.18em;
     text-indent: 0.18em;
   }
