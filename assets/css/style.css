@@ -375,6 +375,56 @@ header.scrolled {
   line-height: 1.1;
 }
 
+.hero-closed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  font-family: Noto Sans JP, sans-serif;
+  opacity: 0;
+  animation: hero-closed-in 1.4s ease 0.4s forwards;
+}
+
+.hero-closed-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  color: #fffffff2;
+  font-size: clamp(1.3rem, 3.2vw, 1.9rem);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-indent: 0.2em;
+  line-height: 1.5;
+}
+
+.hero-thanks {
+  margin-top: 12px;
+  color: #ffffffb3;
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-indent: 0.26em;
+}
+
+@keyframes hero-closed-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-closed {
+    opacity: 1;
+    animation: none;
+  }
+}
+
 .hero-date {
   letter-spacing: 0.15em;
   color: #fffffff2;
@@ -2090,6 +2140,24 @@ bottom: max(24px, env(safe-area-inset-bottom, 0px));
     text-indent: 0.15em;
     margin-bottom: 20px;
     font-size: 4.8rem;
+  }
+
+  .hero-closed {
+    margin-top: 48px;
+  }
+
+  .hero-closed-title {
+    gap: 10px;
+    font-size: 1.45rem;
+    letter-spacing: 0.1em;
+    text-indent: 0.1em;
+  }
+
+  .hero-thanks {
+    margin-top: 12px;
+    font-size: 1.15rem;
+    letter-spacing: 0.18em;
+    text-indent: 0.18em;
   }
 
   .hero-date {
